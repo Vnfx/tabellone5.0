@@ -323,7 +323,7 @@ public class Consolemenu extends javax.swing.JFrame {
             System.out.println("fallicasa");
             jConsBonusCasa.setOpaque(true);
         } //else {
-           // System.out.println("KO");
+           // System.out.println("KO");lokjsflknsdf
         //}
     }                                           
   private void jConsFalliOspStateChanged(javax.swing.event.ChangeEvent evt) {                                            
