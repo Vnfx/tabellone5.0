@@ -93,7 +93,7 @@ public class Tabellone extends javax.swing.JFrame {
         jTabPuntiOsp.setBackground(new java.awt.Color(255, 255, 255));
         jTabPuntiOsp.setFont(new java.awt.Font("Roboto", 0, 240)); // NOI18N
         jTabPuntiOsp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTabPuntiOsp.setText("00");
+        jTabPuntiOsp.setText("0");
         jTabPuntiOsp.setToolTipText("Punti Ospiti");
         jTabPuntiOsp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTabPuntiOsp.setMaximumSize(new java.awt.Dimension(266, 295));
@@ -106,7 +106,7 @@ public class Tabellone extends javax.swing.JFrame {
         jTabPuntiCasa.setFont(new java.awt.Font("Roboto", 0, 240)); // NOI18N
         jTabPuntiCasa.setForeground(new java.awt.Color(255, 255, 255));
         jTabPuntiCasa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTabPuntiCasa.setText("00");
+        jTabPuntiCasa.setText("0");
         jTabPuntiCasa.setToolTipText("Punti Casa");
         jTabPuntiCasa.setMaximumSize(new java.awt.Dimension(266, 295));
         jTabPuntiCasa.setMinimumSize(new java.awt.Dimension(266, 295));
@@ -182,13 +182,13 @@ public class Tabellone extends javax.swing.JFrame {
         jTab24sec.setOpaque(true);
         getContentPane().add(jTab24sec, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 110, 150, 140));
 
-        jTabTitoloMemorial.setFont(new java.awt.Font("Indenture English Penman Demo", 1, 48)); // NOI18N
+        jTabTitoloMemorial.setFont(new java.awt.Font("Edwardian Script ITC", 1, 30)); // NOI18N
         jTabTitoloMemorial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabTitoloMemorial.setText("Memorial Alberto Ceccherini");
         jTabTitoloMemorial.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(jTabTitoloMemorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 370, 50));
 
-        jTabLabelVenefix.setFont(new java.awt.Font("Indenture English Penman Demo", 0, 24)); // NOI18N
+        jTabLabelVenefix.setFont(new java.awt.Font("Edwardian Script ITC", 0, 24)); // NOI18N
         jTabLabelVenefix.setText("Venefix");
         getContentPane().add(jTabLabelVenefix, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 710, 60, 30));
 
@@ -247,7 +247,15 @@ public class Tabellone extends javax.swing.JFrame {
     public void changeJTabPuntiCasa(Integer value) {
         jTabPuntiCasa.setText(value.toString());
     }
-
+    public void changeJTabPuntiOsp(Integer valuepo) {
+        jTabPuntiOsp.setText(valuepo.toString());
+    }
+    public void changeJTabFalliCasa(Integer valuefc) {
+        jTabFalliCasa.setText(valuefc.toString());
+    }
+    public void changeJTabFalliOsp(Integer valuefo) {
+        jTabFalliOsp.setText(valuefo.toString());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JTabBonusCasa;
     private javax.swing.JLabel jTab24sec;
@@ -261,11 +269,16 @@ public class Tabellone extends javax.swing.JFrame {
     private javax.swing.JLabel jTabMin;
     private javax.swing.JLabel jTabNomeCasa;
     private javax.swing.JLabel jTabNomeOsp;
-    public javax.swing.JLabel jTabPuntiCasa;
+    private javax.swing.JLabel jTabPuntiCasa;
     private javax.swing.JLabel jTabPuntiOsp;
     private javax.swing.JLabel jTabSec;
     private javax.swing.JSeparator jTabSeparator1;
     private javax.swing.JLabel jTabSfondo;
     private javax.swing.JLabel jTabTitoloMemorial;
     // End of variables declaration//GEN-END:variables
-}
+
+   // public javax.swing.JLabel jTabPuntiOsp;
+      //   void changeJTabPuntiOsp(Integer value) {
+      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+//}
