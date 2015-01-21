@@ -10,15 +10,13 @@ package it.venefix.tabellone3vs3;
  * @author Venefix
  */
 public class Consolemenu extends javax.swing.JFrame {
-    
+    private Winner winner;
     private Tabellone tabellone;
 
-    /**
-     * Creates new form Consolemenu
-     */
     public Consolemenu() {
         initComponents();
         tabellone = new Tabellone();
+        winner = new Winner();
     }
 
     /**
@@ -42,14 +40,10 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsLabelFalliCasa = new javax.swing.JLabel();
         jCons24Reset = new javax.swing.JButton();
         jCons24s = new javax.swing.JSpinner();
-        //int n = (Integer) jConsPuntiCasa.getValue ();
-        //        if (n == 4) {
-            //            System.out.println("vincitoreeee!");
-            //}
         jConsPuntiCasa = new javax.swing.JSpinner();
         jConsFallicasa = new javax.swing.JSpinner();
         jConsFalliOsp = new javax.swing.JSpinner();
-        jConsPuntiOps = new javax.swing.JSpinner();
+        jConsPuntiOsp = new javax.swing.JSpinner();
         jCons24StartStop = new javax.swing.JToggleButton();
         jConsBonusCasa = new javax.swing.JPanel();
         jConsBonusOsp = new javax.swing.JPanel();
@@ -59,10 +53,11 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsFischio = new javax.swing.JButton();
         jConsGirone = new javax.swing.JRadioButton();
         jConsFinale = new javax.swing.JRadioButton();
-        jCons3p = new javax.swing.JRadioButton();
         jConsTipoGaraframe = new javax.swing.JPanel();
-        jConsNomeOsp = new javax.swing.JTextField();
+        jconsWinView = new javax.swing.JButton();
+        jConsGironeView = new javax.swing.JButton();
         jConsSfondo = new javax.swing.JLabel();
+        jConsNomeOsp = new javax.swing.JTextField();
         jConsMenuBar = new javax.swing.JMenuBar();
         jConsMenu1 = new javax.swing.JMenu();
         jConsMenuOpz = new javax.swing.JMenu();
@@ -168,13 +163,13 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsFalliOsp.setMaximumSize(new java.awt.Dimension(63, 64));
         getContentPane().add(jConsFalliOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 90, 70));
 
-        jConsPuntiOps.setFont(new java.awt.Font("Tahoma", 0, 72)); // NOI18N
-        jConsPuntiOps.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
-        jConsPuntiOps.setToolTipText("Contatore Punti Ospiti");
-        jConsPuntiOps.setMaximumSize(new java.awt.Dimension(45, 93));
-        jConsPuntiOps.setMinimumSize(new java.awt.Dimension(45, 93));
-        jConsPuntiOps.setPreferredSize(new java.awt.Dimension(45, 93));
-        getContentPane().add(jConsPuntiOps, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 110, -1));
+        jConsPuntiOsp.setFont(new java.awt.Font("Tahoma", 0, 72)); // NOI18N
+        jConsPuntiOsp.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+        jConsPuntiOsp.setToolTipText("Contatore Punti Ospiti");
+        jConsPuntiOsp.setMaximumSize(new java.awt.Dimension(45, 93));
+        jConsPuntiOsp.setMinimumSize(new java.awt.Dimension(45, 93));
+        jConsPuntiOsp.setPreferredSize(new java.awt.Dimension(45, 93));
+        getContentPane().add(jConsPuntiOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 110, -1));
 
         jCons24StartStop.setText("START / STOP");
         jCons24StartStop.setToolTipText("Avvia ferma Timer 24Sec");
@@ -233,23 +228,21 @@ public class Consolemenu extends javax.swing.JFrame {
         });
         getContentPane().add(jConsFinale, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, -1, -1));
 
-        Tipogara.add(jCons3p);
-        jCons3p.setText("3 Punti");
-        jCons3p.setToolTipText("Gara di tiro da 3");
-        getContentPane().add(jCons3p, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 70, -1));
-
         jConsTipoGaraframe.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jConsTipoGaraframe.setToolTipText("Modalità Torneo");
         jConsTipoGaraframe.setLayout(null);
-        getContentPane().add(jConsTipoGaraframe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 395, 90, 70));
+        getContentPane().add(jConsTipoGaraframe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 395, 90, 50));
 
-        jConsNomeOsp.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jConsNomeOsp.setText("SQUADRA OSPITI");
-        jConsNomeOsp.setToolTipText("Inserire il nome della squadra");
-        jConsNomeOsp.setMaximumSize(new java.awt.Dimension(135, 28));
-        jConsNomeOsp.setMinimumSize(new java.awt.Dimension(135, 28));
-        jConsNomeOsp.setPreferredSize(new java.awt.Dimension(135, 28));
-        getContentPane().add(jConsNomeOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 230, 30));
+        jconsWinView.setText("Winner");
+        jconsWinView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jconsWinViewActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jconsWinView, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
+
+        jConsGironeView.setText("Gironi");
+        getContentPane().add(jConsGironeView, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
 
         jConsSfondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Venefix\\Desktop\\Tabellone 5.0\\IMAGES\\parq.jpg")); // NOI18N
         jConsSfondo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -258,6 +251,14 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsSfondo.setPreferredSize(new java.awt.Dimension(640, 520));
         jConsSfondo.setRequestFocusEnabled(false);
         getContentPane().add(jConsSfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
+
+        jConsNomeOsp.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jConsNomeOsp.setText("SQUADRA OSPITI");
+        jConsNomeOsp.setToolTipText("Inserire il nome della squadra");
+        jConsNomeOsp.setMaximumSize(new java.awt.Dimension(135, 28));
+        jConsNomeOsp.setMinimumSize(new java.awt.Dimension(135, 28));
+        jConsNomeOsp.setPreferredSize(new java.awt.Dimension(135, 28));
+        getContentPane().add(jConsNomeOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 230, 30));
 
         jConsMenu1.setText("File");
         jConsMenuBar.add(jConsMenu1);
@@ -285,17 +286,32 @@ public class Consolemenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jConsInizioActionPerformed
 
     private void jConsPuntiCasaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsPuntiCasaStateChanged
-    //////////////////////    jconspunticasa = Tabellone
+
         Integer value = (Integer) jConsPuntiCasa.getValue();
        if (tabellone != null ) {
         tabellone.changeJTabPuntiCasa(value);
        }
-        if (value.equals(2)) {
-            System.out.println(value);
-        } else {
-            System.out.println("KO");
-        }
+        if (value.equals(21)) {
+            winner.setVisible(true);
+            System.out.println("casa");
+        } //else {
+           // System.out.println("KO");
+        //}
     }//GEN-LAST:event_jConsPuntiCasaStateChanged
+
+    private void jConsPuntiOspStateChanged(javax.swing.event.ChangeEvent evt) {                                            
+    
+        Integer value = (Integer) jConsPuntiOsp.getValue();
+       if (tabellone != null ) {
+        tabellone.changeJTabPuntiOsp(value);
+       }
+        if (value.equals(21)) {
+            winner.setVisible(true);
+            System.out.println("ospiti");
+        } //else {
+           // System.out.println("KO");
+        //}
+    }                                           
 
     private void jConsFischioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsFischioActionPerformed
         {
@@ -316,8 +332,12 @@ public class Consolemenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jConsMenu3ActionPerformed
 
     private void jConsTabViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsTabViewActionPerformed
-tabellone.setVisible(true);// TODO add your handling code here:
+    tabellone.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jConsTabViewActionPerformed
+
+    private void jconsWinViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jconsWinViewActionPerformed
+     winner.setVisible(true);   // TODO add your handling code here:
+    }//GEN-LAST:event_jconsWinViewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,7 +381,6 @@ tabellone.setVisible(true);// TODO add your handling code here:
     private javax.swing.JButton jCons24Reset;
     private javax.swing.JToggleButton jCons24StartStop;
     private javax.swing.JSpinner jCons24s;
-    private javax.swing.JRadioButton jCons3p;
     private javax.swing.JPanel jConsBonusCasa;
     private javax.swing.JPanel jConsBonusOsp;
     private javax.swing.JSpinner jConsFalliOsp;
@@ -370,6 +389,7 @@ tabellone.setVisible(true);// TODO add your handling code here:
     private javax.swing.JButton jConsFischio;
     private javax.swing.JButton jConsGiocatoriView;
     private javax.swing.JRadioButton jConsGirone;
+    private javax.swing.JButton jConsGironeView;
     private javax.swing.JButton jConsInizio;
     private javax.swing.JLabel jConsLabelFalliCasa;
     private javax.swing.JLabel jConsLabelFalliOsp;
@@ -383,13 +403,14 @@ tabellone.setVisible(true);// TODO add your handling code here:
     private javax.swing.JButton jConsPartiteView;
     private javax.swing.JButton jConsPausa;
     private javax.swing.JSpinner jConsPuntiCasa;
-    private javax.swing.JSpinner jConsPuntiOps;
+    private javax.swing.JSpinner jConsPuntiOsp;
     private javax.swing.JLabel jConsSfondo;
     private javax.swing.JButton jConsTabView;
     private javax.swing.JTextField jConsTimeMin;
     private javax.swing.JTextField jConsTimeSec;
     private javax.swing.JLabel jConsTimerLabel;
     private javax.swing.JPanel jConsTipoGaraframe;
+    private javax.swing.JButton jconsWinView;
     // End of variables declaration//GEN-END:variables
 
     private Object Tabellone() {
