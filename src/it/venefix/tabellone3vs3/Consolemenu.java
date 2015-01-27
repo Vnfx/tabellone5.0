@@ -206,6 +206,11 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsBonusCasa.setMaximumSize(new java.awt.Dimension(10, 10));
         jConsBonusCasa.setOpaque(false);
         jConsBonusCasa.setPreferredSize(new java.awt.Dimension(10, 10));
+        jConsBonusCasa.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jConsBonusCasaPropertyChange(evt);
+            }
+        });
         getContentPane().add(jConsBonusCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 50, 50));
 
         jConsBonusOsp.setBackground(new java.awt.Color(255, 0, 0));
@@ -317,8 +322,8 @@ public class Consolemenu extends javax.swing.JFrame {
        if (tabellone != null ) {
         tabellone.changeJTabPuntiCasa(valuepc);
        }
-        if (valuepc.equals(6)) {
-          
+        if (valuepc.equals(21)) {
+          winner.setVisible(true); 
             jConsBonusCasa.setOpaque(true);
             System.out.println("casa");
         } else {
@@ -360,10 +365,10 @@ public class Consolemenu extends javax.swing.JFrame {
         tabellone.changeJTabPuntiOsp(valuepo);
        }
         if (valuepo.equals(21)) {
-            
-            System.out.println("ospiti");
+            winner.setVisible(true); 
+           
         } else {
-            System.out.println("KO");
+           
         }
     }//GEN-LAST:event_jConsPuntiOspStateChanged
 
@@ -375,9 +380,9 @@ public class Consolemenu extends javax.swing.JFrame {
         if (valuefc.equals(5)) {
             System.out.println("fallicasa");
             jConsBonusCasa.setOpaque(true);
-        } //else {
-           // System.out.println("KO");lokjsflknsdf
-        //}
+        } else 
+          jConsBonusCasa.setOpaque(false);
+         
     }//GEN-LAST:event_jConsFalliCasaStateChanged
 
     private void jConsFalliOspStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsFalliOspStateChanged
@@ -387,11 +392,15 @@ public class Consolemenu extends javax.swing.JFrame {
        }
         if (valuefo.equals(5)) {
             System.out.println("FalliOspiti");
-             jConsBonusOsp.setOpaque(true);
-        } //else {
-           // System.out.println("KO");
+              jConsBonusOsp.setOpaque(true);
+        } else 
+            jConsBonusOsp.setOpaque(false);// System.out.println("KO");
         //}
     }//GEN-LAST:event_jConsFalliOspStateChanged
+
+    private void jConsBonusCasaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jConsBonusCasaPropertyChange
+
+    }//GEN-LAST:event_jConsBonusCasaPropertyChange
 
     /**
      * @param args the command line arguments
