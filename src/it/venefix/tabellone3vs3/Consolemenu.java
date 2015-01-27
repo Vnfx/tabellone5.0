@@ -11,7 +11,7 @@ package it.venefix.tabellone3vs3;
  */
 public class Consolemenu extends javax.swing.JFrame {
        private Tabellone tabellone;
-        private Winner winner;
+     private   Winner winner;
     
     public Consolemenu() {
         initComponents();
@@ -56,7 +56,7 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsGirone = new javax.swing.JRadioButton();
         jConsFinale = new javax.swing.JRadioButton();
         jConsTipoGaraframe = new javax.swing.JPanel();
-        jconsWinView = new javax.swing.JButton();
+        jConsWinView = new javax.swing.JButton();
         jConsGironeView = new javax.swing.JButton();
         jConsNomeOsp = new javax.swing.JTextField();
         jConsSfondo = new javax.swing.JLabel();
@@ -260,13 +260,13 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsTipoGaraframe.setLayout(null);
         getContentPane().add(jConsTipoGaraframe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 395, 90, 50));
 
-        jconsWinView.setText("Winner");
-        jconsWinView.addActionListener(new java.awt.event.ActionListener() {
+        jConsWinView.setText("Winner");
+        jConsWinView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jconsWinViewActionPerformed(evt);
+                jConsWinViewActionPerformed(evt);
             }
         });
-        getContentPane().add(jconsWinView, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
+        getContentPane().add(jConsWinView, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
 
         jConsGironeView.setText("Gironi");
         getContentPane().add(jConsGironeView, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
@@ -318,7 +318,7 @@ public class Consolemenu extends javax.swing.JFrame {
         tabellone.changeJTabPuntiCasa(valuepc);
        }
         if (valuepc.equals(6)) {
-            winner.setVisible(true);
+          
             jConsBonusCasa.setOpaque(true);
             System.out.println("casa");
         } else {
@@ -350,9 +350,9 @@ public class Consolemenu extends javax.swing.JFrame {
     tabellone.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jConsTabViewActionPerformed
 
-    private void jconsWinViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jconsWinViewActionPerformed
+    private void jConsWinViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsWinViewActionPerformed
      winner.setVisible(true);   // TODO add your handling code here:
-    }//GEN-LAST:event_jconsWinViewActionPerformed
+    }//GEN-LAST:event_jConsWinViewActionPerformed
 
     private void jConsPuntiOspStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsPuntiOspStateChanged
         Integer valuepo = (Integer) jConsPuntiOsp.getValue();
@@ -360,7 +360,7 @@ public class Consolemenu extends javax.swing.JFrame {
         tabellone.changeJTabPuntiOsp(valuepo);
        }
         if (valuepo.equals(21)) {
-            winner.setVisible(true);
+            
             System.out.println("ospiti");
         } else {
             System.out.println("KO");
@@ -466,7 +466,7 @@ public class Consolemenu extends javax.swing.JFrame {
     private javax.swing.JTextField jConsTimeSec;
     private javax.swing.JLabel jConsTimerLabel;
     private javax.swing.JPanel jConsTipoGaraframe;
-    private javax.swing.JButton jconsWinView;
+    private javax.swing.JButton jConsWinView;
     // End of variables declaration//GEN-END:variables
 
     private Object Tabellone() {
