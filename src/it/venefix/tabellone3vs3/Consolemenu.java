@@ -38,6 +38,8 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsLabelVenefix = new javax.swing.JLabel();
         jConsLabelFalliOsp = new javax.swing.JLabel();
         jConsLabelFalliCasa = new javax.swing.JLabel();
+        JConsLabelPuntiCasa = new javax.swing.JLabel();
+        JConsLabelPuntiOsp = new javax.swing.JLabel();
         jCons24Reset = new javax.swing.JButton();
         jCons24s = new javax.swing.JSpinner();
         jConsPuntiCasa = new javax.swing.JSpinner();
@@ -56,8 +58,8 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsTipoGaraframe = new javax.swing.JPanel();
         jconsWinView = new javax.swing.JButton();
         jConsGironeView = new javax.swing.JButton();
-        jConsSfondo = new javax.swing.JLabel();
         jConsNomeOsp = new javax.swing.JTextField();
+        jConsSfondo = new javax.swing.JLabel();
         jConsMenuBar = new javax.swing.JMenuBar();
         jConsMenu1 = new javax.swing.JMenu();
         jConsMenuOpz = new javax.swing.JMenu();
@@ -128,6 +130,14 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsLabelFalliCasa.setText("FALLI");
         getContentPane().add(jConsLabelFalliCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
 
+        JConsLabelPuntiCasa.setForeground(new java.awt.Color(240, 240, 240));
+        JConsLabelPuntiCasa.setText("PUNTI");
+        getContentPane().add(JConsLabelPuntiCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 40, -1));
+
+        JConsLabelPuntiOsp.setForeground(new java.awt.Color(240, 240, 240));
+        JConsLabelPuntiOsp.setText("PUNTI");
+        getContentPane().add(JConsLabelPuntiOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, -1, -1));
+
         jCons24Reset.setText("RESET");
         getContentPane().add(jCons24Reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 310, 110, -1));
 
@@ -155,12 +165,22 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsFalliCasa.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
         jConsFalliCasa.setToolTipText("Falli Casa");
         jConsFalliCasa.setMaximumSize(new java.awt.Dimension(63, 64));
+        jConsFalliCasa.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jConsFalliCasaStateChanged(evt);
+            }
+        });
         getContentPane().add(jConsFalliCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 90, 70));
 
         jConsFalliOsp.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jConsFalliOsp.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
         jConsFalliOsp.setToolTipText("Falli Ospiti");
         jConsFalliOsp.setMaximumSize(new java.awt.Dimension(63, 64));
+        jConsFalliOsp.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jConsFalliOspStateChanged(evt);
+            }
+        });
         getContentPane().add(jConsFalliOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 90, 70));
 
         jConsPuntiOsp.setFont(new java.awt.Font("Tahoma", 0, 72)); // NOI18N
@@ -169,6 +189,11 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsPuntiOsp.setMaximumSize(new java.awt.Dimension(45, 93));
         jConsPuntiOsp.setMinimumSize(new java.awt.Dimension(45, 93));
         jConsPuntiOsp.setPreferredSize(new java.awt.Dimension(45, 93));
+        jConsPuntiOsp.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jConsPuntiOspStateChanged(evt);
+            }
+        });
         getContentPane().add(jConsPuntiOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 110, -1));
 
         jCons24StartStop.setText("START / STOP");
@@ -246,14 +271,6 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsGironeView.setText("Gironi");
         getContentPane().add(jConsGironeView, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
 
-        jConsSfondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Venefix\\Desktop\\Tabellone 5.0\\IMAGES\\parq.jpg")); // NOI18N
-        jConsSfondo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jConsSfondo.setMaximumSize(new java.awt.Dimension(640, 520));
-        jConsSfondo.setMinimumSize(new java.awt.Dimension(640, 520));
-        jConsSfondo.setPreferredSize(new java.awt.Dimension(640, 520));
-        jConsSfondo.setRequestFocusEnabled(false);
-        getContentPane().add(jConsSfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
-
         jConsNomeOsp.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jConsNomeOsp.setText("SQUADRA OSPITI");
         jConsNomeOsp.setToolTipText("Inserire il nome della squadra");
@@ -261,6 +278,14 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsNomeOsp.setMinimumSize(new java.awt.Dimension(135, 28));
         jConsNomeOsp.setPreferredSize(new java.awt.Dimension(135, 28));
         getContentPane().add(jConsNomeOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 230, 30));
+
+        jConsSfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parq.jpg"))); // NOI18N
+        jConsSfondo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jConsSfondo.setMaximumSize(new java.awt.Dimension(640, 520));
+        jConsSfondo.setMinimumSize(new java.awt.Dimension(640, 520));
+        jConsSfondo.setPreferredSize(new java.awt.Dimension(640, 520));
+        jConsSfondo.setRequestFocusEnabled(false);
+        getContentPane().add(jConsSfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
         jConsMenu1.setText("File");
         jConsMenuBar.add(jConsMenu1);
@@ -302,43 +327,7 @@ public class Consolemenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jConsPuntiCasaStateChanged
 
-    private void jConsPuntiOspStateChanged(javax.swing.event.ChangeEvent evt) {                                            
-        Integer valuepo = (Integer) jConsPuntiOsp.getValue();
-       if (tabellone != null ) {
-        tabellone.changeJTabPuntiOsp(valuepo);
-       }
-        if (valuepo.equals(21)) {
-            winner.setVisible(true);
-            System.out.println("ospiti");
-        } else {
-            System.out.println("KO");
-        }
-    }                                           
-  private void jConsFalliCasaStateChanged(javax.swing.event.ChangeEvent evt) {                                            
-        Integer valuefc = (Integer) jConsFalliCasa.getValue();
-       if (tabellone != null ) {
-        tabellone.changeJTabPuntiCasa(valuefc);
-       }
-        if (valuefc.equals(5)) {
-            System.out.println("fallicasa");
-            jConsBonusCasa.setOpaque(true);
-        } //else {
-           // System.out.println("KO");lokjsflknsdf
-        //}
-    }                                           
-  private void jConsFalliOspStateChanged(javax.swing.event.ChangeEvent evt) {                                            
-        Integer valuefo = (Integer) jConsFalliOsp.getValue();
-       if (tabellone != null ) {
-        tabellone.changeJTabFalliOsp(valuefo);
-       }
-        if (valuefo.equals(5)) {
-            System.out.println("FalliOspiti");
-             jConsBonusOsp.setOpaque(true);
-        } //else {
-           // System.out.println("KO");
-        //}
-    }                                           
-
+ 
     private void jConsFischioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsFischioActionPerformed
         {
         // aw.start();     
@@ -364,6 +353,45 @@ public class Consolemenu extends javax.swing.JFrame {
     private void jconsWinViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jconsWinViewActionPerformed
      winner.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_jconsWinViewActionPerformed
+
+    private void jConsPuntiOspStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsPuntiOspStateChanged
+        Integer valuepo = (Integer) jConsPuntiOsp.getValue();
+       if (tabellone != null ) {
+        tabellone.changeJTabPuntiOsp(valuepo);
+       }
+        if (valuepo.equals(21)) {
+            winner.setVisible(true);
+            System.out.println("ospiti");
+        } else {
+            System.out.println("KO");
+        }
+    }//GEN-LAST:event_jConsPuntiOspStateChanged
+
+    private void jConsFalliCasaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsFalliCasaStateChanged
+        Integer valuefc = (Integer) jConsFalliCasa.getValue();
+       if (tabellone != null ) {
+        tabellone.changeJTabFalliCasa(valuefc);
+       }
+        if (valuefc.equals(5)) {
+            System.out.println("fallicasa");
+            jConsBonusCasa.setOpaque(true);
+        } //else {
+           // System.out.println("KO");lokjsflknsdf
+        //}
+    }//GEN-LAST:event_jConsFalliCasaStateChanged
+
+    private void jConsFalliOspStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsFalliOspStateChanged
+        Integer valuefo = (Integer) jConsFalliOsp.getValue();
+       if (tabellone != null ) {
+        tabellone.changejtabFalliOsp(valuefo);
+       }
+        if (valuefo.equals(5)) {
+            System.out.println("FalliOspiti");
+             jConsBonusOsp.setOpaque(true);
+        } //else {
+           // System.out.println("KO");
+        //}
+    }//GEN-LAST:event_jConsFalliOspStateChanged
 
     /**
      * @param args the command line arguments
@@ -403,6 +431,8 @@ public class Consolemenu extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JConsLabelPuntiCasa;
+    private javax.swing.JLabel JConsLabelPuntiOsp;
     private javax.swing.ButtonGroup Tipogara;
     private javax.swing.JButton jCons24Reset;
     private javax.swing.JToggleButton jCons24StartStop;

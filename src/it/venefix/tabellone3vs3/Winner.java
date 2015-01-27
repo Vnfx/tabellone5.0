@@ -71,7 +71,7 @@ public class Winner extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1024, 768));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Venefix\\Desktop\\Tabellone 5.0\\IMAGES\\winner.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/winner.jpg"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(1280, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1280, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1280, 768));
