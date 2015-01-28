@@ -1,28 +1,66 @@
 package it.venefix.tabellone3vs3;
 
 import java.util.Calendar;
-        import java.util.GregorianCalendar;
+import java.util.GregorianCalendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
-public class Tabellone extends javax.swing.JFrame {
-//int tempo = 0;
-      public Tabellone() {
+public class Tabellone extends javax.swing.JFrame 
+       
+{  
+    boolean vaisx = true;
+    public Tabellone()   
+  {     
         initComponents();
-    new Thread () {
-            public void run(){
-                while (true){ //(tempo == 0)
-        Calendar cal = new GregorianCalendar();
-        int ora = cal.get(Calendar.HOUR);
-        int min = cal.get(Calendar.MINUTE);
-        int sec = cal.get(Calendar.SECOND);
         
-       String orario = ora + ":" + min + ":" + sec ;
-       jTabOrario.setText(orario);
-        } 
-        }
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask()
+        {
+            public void run()
+            {
+              if (vaisx == true)
+                    {
+                        jTabLabelVenefix.setLocation(jTabLabelVenefix.getLocation().x -2,jTabLabelVenefix.getLocation ().y);
+                        
+                        if (jTabLabelVenefix.getLocation().x < 0)
+                                {
+                                    vaisx = false;
+                                }
+                    }
+                    else if (vaisx == false)
+                        {
+                         jTabLabelVenefix.setLocation(jTabLabelVenefix.getLocation().x +2,jTabLabelVenefix.getLocation ().y);  
+                       
+                         if (jTabLabelVenefix.getLocation().x > 1200)
+                                {
+                                    vaisx = true;
+                                }
+                        }
+                   
+            }
+        };
+        timer.scheduleAtFixedRate(task, 0, 100);
+        {        
+        new Thread () 
+       {
+               public void run()
+           {
+                   while (true)
+               { 
+                   Calendar cal = new GregorianCalendar();
+                   int ora = cal.get(Calendar.HOUR_OF_DAY);
+                   int min = cal.get(Calendar.MINUTE);
+                   int sec = cal.get(Calendar.SECOND);
+                   String orario = ora + ":" + min + ":" + sec ;
+                   jTabOrario.setText(orario);
+               } 
+           }
         }
        .start();
-}
+    }
+  }                   
+ 
   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -55,10 +93,10 @@ public class Tabellone extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setIconImages(null);
-        setMaximumSize(new java.awt.Dimension(1280, 768));
-        setMinimumSize(new java.awt.Dimension(1280, 768));
+        setMaximumSize(new java.awt.Dimension(1280, 780));
+        setMinimumSize(new java.awt.Dimension(1280, 780));
         setName("Tabellone"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 768));
+        setPreferredSize(new java.awt.Dimension(1280, 780));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -116,7 +154,7 @@ public class Tabellone extends javax.swing.JFrame {
         jTabPuntiCasa.setPreferredSize(new java.awt.Dimension(266, 295));
         getContentPane().add(jTabPuntiCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 330, 240));
 
-        jTabOrario.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
+        jTabOrario.setFont(new java.awt.Font("Roboto Th", 0, 48)); // NOI18N
         jTabOrario.setForeground(new java.awt.Color(0, 204, 51));
         jTabOrario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabOrario.setToolTipText("");
@@ -199,7 +237,7 @@ public class Tabellone extends javax.swing.JFrame {
 
         jTabLabelVenefix.setFont(new java.awt.Font("Edwardian Script ITC", 0, 24)); // NOI18N
         jTabLabelVenefix.setText("Venefix");
-        getContentPane().add(jTabLabelVenefix, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 710, 60, 30));
+        getContentPane().add(jTabLabelVenefix, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 720, 60, 30));
 
         jTabSfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tolomei.jpg"))); // NOI18N
         jTabSfondo.setMaximumSize(new java.awt.Dimension(1280, 768));
