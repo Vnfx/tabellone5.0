@@ -96,7 +96,7 @@ private Consolemenu consolemenu;
             {
                 try
                     {
-                        Thread.sleep(3000);
+                        Thread.sleep(300);
                     }
                  catch (Exception e)
                  {
