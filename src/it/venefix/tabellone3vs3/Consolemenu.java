@@ -1,9 +1,14 @@
 package it.venefix.tabellone3vs3;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.lang.reflect.Field;
+import javax.swing.*;
+
+
 
 
 public class Consolemenu extends javax.swing.JFrame {
@@ -14,11 +19,9 @@ public class Consolemenu extends javax.swing.JFrame {
         initComponents();
         tabellone = new Tabellone();
         winner = new Winner();
-         Dimension dim = getToolkit().getScreenSize(); // centra lo schermo
-        this.setLocation(dim.width/2-this.getWidth()/2,dim.height/2-this.getHeight()/2);
+//         Dimension dim = getToolkit().getScreenSize(); // centra lo schermo
+//        this.setLocation(dim.width/2-this.getWidth()/2,dim.height/2-this.getHeight()/2);
     }
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,6 +161,7 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsFalliCasa.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jConsFalliCasa.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
         jConsFalliCasa.setToolTipText("Falli Casa");
+        jConsFalliCasa.setBorder(null);
         jConsFalliCasa.setMaximumSize(new java.awt.Dimension(63, 64));
         jConsFalliCasa.setOpaque(false);
         jConsFalliCasa.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -170,6 +174,7 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsFalliOsp.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jConsFalliOsp.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
         jConsFalliOsp.setToolTipText("Falli Ospiti");
+        jConsFalliOsp.setBorder(null);
         jConsFalliOsp.setMaximumSize(new java.awt.Dimension(63, 64));
         jConsFalliOsp.setOpaque(false);
         jConsFalliOsp.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -296,8 +301,8 @@ public class Consolemenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jConsInizioActionPerformed
 
     private void jConsPuntiCasaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsPuntiCasaStateChanged
-        Integer valuepc = (Integer) jConsPuntiCasa.getValue();
-       if (tabellone != null ) {
+        Integer valuepc = (Integer) jConsPuntiCasa.getValue() ;  
+        if (tabellone != null ) {
         tabellone.changeJTabPuntiCasa(valuepc);
        }
         if (valuepc.equals(21)) {
@@ -356,19 +361,36 @@ public class Consolemenu extends javax.swing.JFrame {
 
     private void jConsFalliCasaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsFalliCasaStateChanged
         Integer valuefc = (Integer) jConsFalliCasa.getValue();
-       if (tabellone != null ) 
+//        try 
+//        {
+//            String colorString = (String)jConsPuntiCasa.getValue();
+//
+//            Field field = Class.forName("java.awt.Color").getField(colorString.toLowerCase()); // toLowerCase because the color fields are RED or red, not Red
+//            Color color = (Color)field.get(null);
+//
+//            JTextField tf = ((JSpinner.DefaultEditor) jConsPuntiCasa.getEditor()).getTextField();
+//            tf.setForeground(color);
+//
+//        } catch (Exception ex) 
+//        { // handle ex }
+//        }
+        
+        
+        if (tabellone != null ) 
        {
         tabellone.changejTabFalliCasa(valuefc);
        }
         if (valuefc> (4)) 
          {
-            jConsFalliCasa.setBackground(Color.red);//cambiare colore dello spinner falli nella console
+           jConsFalliCasa.setBackground(Color.red);
             tabellone.jTabFalliCasa.setBackground(Color.red);
          } 
            else 
+        {
               if (valuefc <(5)) 
-             jConsFalliCasa.setBackground(Color.black);
+//             jConsFalliCasa.setBorder(true);
              tabellone.jTabFalliCasa.setBackground(Color.black);
+        }
     }//GEN-LAST:event_jConsFalliCasaStateChanged
 
     private void jConsFalliOspStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsFalliOspStateChanged
@@ -384,8 +406,8 @@ public class Consolemenu extends javax.swing.JFrame {
         } 
             else 
         {
-             if (valuefo <(5)) 
-             jConsFalliOsp.setBackground(Color.white);
+              if (valuefo <(5)) 
+//             jConsFalliOsp.
              tabellone.jTabFalliOsp.setBackground(Color.white);
         }
     }//GEN-LAST:event_jConsFalliOspStateChanged
@@ -424,7 +446,7 @@ public class Consolemenu extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

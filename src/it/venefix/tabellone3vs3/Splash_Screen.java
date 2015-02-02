@@ -2,7 +2,8 @@
 package it.venefix.tabellone3vs3;
 
 
-import java.awt.Dimension;
+import javax.swing.UIManager;
+import com.sun.awt.AWTUtilities; // VEDERE MESSAGGI COMPILAZIONE
 
 public class Splash_Screen extends javax.swing.JFrame 
 {
@@ -11,10 +12,9 @@ private Consolemenu consolemenu;
     public Splash_Screen() 
     {
         initComponents();
-       
+       AWTUtilities.setWindowOpaque(this, false);
         consolemenu = new Consolemenu();
-         Dimension dim = getToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getWidth()/2,dim.height/2-this.getHeight()/2);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -23,8 +23,8 @@ private Consolemenu consolemenu;
 
         jSplashFirma = new javax.swing.JLabel();
         jSplashVersione = new javax.swing.JLabel();
-        jSplashfondo = new javax.swing.JLabel();
         jSplashTitolo = new javax.swing.JLabel();
+        jSplashfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MEMORIAL ALBERTO CECCHERINI");
@@ -49,18 +49,18 @@ private Consolemenu consolemenu;
         getContentPane().add(jSplashVersione);
         jSplashVersione.setBounds(50, 280, 60, 30);
 
-        jSplashfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartoon-basketball-court-hi.png"))); // NOI18N
+        jSplashTitolo.setFont(new java.awt.Font("Bradley Hand ITC", 1, 48)); // NOI18N
+        jSplashTitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jSplashTitolo.setText("TORNEO 3 vs 3");
+        getContentPane().add(jSplashTitolo);
+        jSplashTitolo.setBounds(10, 20, 600, 40);
+
+        jSplashfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartoon_splash.png"))); // NOI18N
         getContentPane().add(jSplashfondo);
         jSplashfondo.setBounds(10, 50, 600, 280);
 
-        jSplashTitolo.setFont(new java.awt.Font("Felix Titling", 0, 32)); // NOI18N
-        jSplashTitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jSplashTitolo.setText("Memorial Alberto Ceccherini");
-        jSplashTitolo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.MatteBorder(null), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        getContentPane().add(jSplashTitolo);
-        jSplashTitolo.setBounds(10, 0, 600, 40);
-
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
   public static void main(String args[]) 
@@ -96,8 +96,8 @@ private Consolemenu consolemenu;
             {
                 try
                     {
-                        Thread.sleep(300);
-                    }
+                        Thread.sleep (30); //REIMPOSTARE A 3000 PER 3 SEC DELAY
+                    }                       // CONTROLLARE PERCHE NON SI CHIUDE SPLASH SCREEN
                  catch (Exception e)
                  {
                  }
@@ -105,7 +105,7 @@ private Consolemenu consolemenu;
              }
             private Object Consolemenu() 
             {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                throw new UnsupportedOperationException("Not supported yet.");
             }
         });
     }
@@ -117,10 +117,6 @@ private Consolemenu consolemenu;
     private javax.swing.JLabel jSplashfondo;
     // End of variables declaration//GEN-END:variables
 
-    private static class AWUtilities {
 
-        public AWUtilities() {
-        }
-    }
 
 }
