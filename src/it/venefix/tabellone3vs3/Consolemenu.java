@@ -79,11 +79,6 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsNomeCasa.setToolTipText("Inserire il nome della squadra");
         jConsNomeCasa.setMaximumSize(new java.awt.Dimension(135, 28));
         jConsNomeCasa.setMinimumSize(new java.awt.Dimension(135, 28));
-        jConsNomeCasa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jConsNomeCasaActionPerformed(evt);
-            }
-        });
         getContentPane().add(jConsNomeCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 230, 30));
 
         jConsTimerLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -161,7 +156,6 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsFalliCasa.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jConsFalliCasa.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
         jConsFalliCasa.setToolTipText("Falli Casa");
-        jConsFalliCasa.setBorder(null);
         jConsFalliCasa.setMaximumSize(new java.awt.Dimension(63, 64));
         jConsFalliCasa.setOpaque(false);
         jConsFalliCasa.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -174,7 +168,6 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsFalliOsp.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jConsFalliOsp.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
         jConsFalliOsp.setToolTipText("Falli Ospiti");
-        jConsFalliOsp.setBorder(null);
         jConsFalliOsp.setMaximumSize(new java.awt.Dimension(63, 64));
         jConsFalliOsp.setOpaque(false);
         jConsFalliOsp.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -326,17 +319,13 @@ public class Consolemenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jConsFinaleActionPerformed
 
-    private void jConsNomeCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsNomeCasaActionPerformed
-//      string nomecasa = (string) jConsNomeCasa.getText();
-//        tabellone.changejTabNomeCasa (nomecasa) ;   
-    }//GEN-LAST:event_jConsNomeCasaActionPerformed
-
     private void jConsMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsMenu3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jConsMenu3ActionPerformed
 
     private void jConsTabViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsTabViewActionPerformed
     tabellone.setVisible(true);
+    tabellone.changeNomeSquadraCasa(jConsNomeCasa.getText());
     }//GEN-LAST:event_jConsTabViewActionPerformed
 
     private void jConsWinViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsWinViewActionPerformed
@@ -361,35 +350,14 @@ public class Consolemenu extends javax.swing.JFrame {
 
     private void jConsFalliCasaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsFalliCasaStateChanged
         Integer valuefc = (Integer) jConsFalliCasa.getValue();
-//        try 
-//        {
-//            String colorString = (String)jConsPuntiCasa.getValue();
-//
-//            Field field = Class.forName("java.awt.Color").getField(colorString.toLowerCase()); // toLowerCase because the color fields are RED or red, not Red
-//            Color color = (Color)field.get(null);
-//
-//            JTextField tf = ((JSpinner.DefaultEditor) jConsPuntiCasa.getEditor()).getTextField();
-//            tf.setForeground(color);
-//
-//        } catch (Exception ex) 
-//        { // handle ex }
-//        }
-        
-        
-        if (tabellone != null ) 
-       {
-        tabellone.changejTabFalliCasa(valuefc);
-       }
-        if (valuefc> (4)) 
-         {
+        if (tabellone != null ) {
+            tabellone.changejTabFalliCasa(valuefc);
+        }
+        if (valuefc > 4) {
            jConsFalliCasa.setBackground(Color.red);
-            tabellone.jTabFalliCasa.setBackground(Color.red);
-         } 
-           else 
-        {
-              if (valuefc <(5)) 
-//             jConsFalliCasa.setBorder(true);
-             tabellone.jTabFalliCasa.setBackground(Color.black);
+           tabellone.jTabFalliCasa.setBackground(Color.red);
+        } else if (valuefc < 5) {
+                tabellone.jTabFalliCasa.setBackground(Color.black);
         }
     }//GEN-LAST:event_jConsFalliCasaStateChanged
 

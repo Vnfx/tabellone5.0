@@ -317,6 +317,10 @@ public class Tabellone extends javax.swing.JFrame
     private javax.swing.JLabel jTabTitoloMemorial;
     // End of variables declaration//GEN-END:variables
 
+    public void changeNomeSquadraCasa(String name) {
+        jTabNomeCasa.setText(name);
+    }
+    
     public void changeJTabPuntiCasa(Integer value) 
     {
         jTabPuntiCasa.setText(value.toString());
