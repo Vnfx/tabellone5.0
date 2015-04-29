@@ -32,8 +32,10 @@ public class Winner extends javax.swing.JFrame {
         jWinWinner1 = new javax.swing.JLabel();
         jWinSfondo = new javax.swing.JLabel();
 
+        setAlwaysOnTop(true);
         setMaximumSize(new java.awt.Dimension(1200, 768));
         setMinimumSize(new java.awt.Dimension(1200, 768));
+        setName("winner"); // NOI18N
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1200, 768));
         getContentPane().setLayout(null);

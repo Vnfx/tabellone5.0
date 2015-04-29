@@ -1,12 +1,10 @@
 package it.venefix.tabellone3vs3;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Component;
+import java.awt.*;
+//import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.awt.Toolkit;
-import sun.audio.*;
+//import sun.audio.*;
 
 
 public class Consolemenu extends javax.swing.JFrame {
@@ -14,35 +12,46 @@ public class Consolemenu extends javax.swing.JFrame {
 //    Timer timer;
     private Tabellone tabellone;
     private Winner winner;
+
+    Timer t24s = new Timer();
+    Timer gara = new Timer();
+    Timer vsxa = new Timer();
    
-    
     public Consolemenu() {
         initComponents();
-        int finalegirone = 21;
-        
+//        int finalegirone = 21;
+//        boolean attivo = true;
         tabellone = new Tabellone();
         winner = new Winner();
-        
-        Timer t24 = new Timer();
-        
-        TimerTask task = new TimerTask()
-         {
-          Integer v24 = (Integer) jCons24s.getValue();              
-              public void run ()
-               {           
-//                    if (v24 > (0))  //(valuefo > (4))
-//                    {
-                     v24 --;
-//                     jCons24s.setValue(v24);
-//                    }        
-               } 
-          }; 
-      
-
+       
         Dimension dim = getToolkit().getScreenSize(); // centra lo schermo
         this.setLocation(dim.width/2-this.getWidth()/2,dim.height/2-this.getHeight()/2);
-    }
-
+     
+//    TimerTask scritta = new TimerTask()
+//    {
+//        boolean vaisx = true;
+//        public void run() // rende la label (con la scritta venefix) scorrevole
+//        {
+//          if (vaisx == true)
+//            {
+//            tabellone.jTabLabelVenefix.setLocation(tabellone.jTabLabelVenefix.getLocation().x -2,tabellone.jTabLabelVenefix.getLocation ().y);
+//            if (tabellone.jTabLabelVenefix.getLocation().x < 120)
+//                    {
+//                        vaisx = false;
+//                    }
+//            }
+//            else if (vaisx == false)
+//            {
+//             tabellone.jTabLabelVenefix.setLocation(tabellone.jTabLabelVenefix.getLocation().x +2,tabellone.jTabLabelVenefix.getLocation ().y);  
+//                if (tabellone.jTabLabelVenefix.getLocation().x > 1000)
+//                    {
+//                        vaisx = true;
+//                    }
+//            }    
+//        }
+//    };
+//    vsxa.scheduleAtFixedRate(scritta, 0, 10);
+   }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -87,8 +96,13 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsSfondo = new javax.swing.JLabel();
         jConsMenuBar = new javax.swing.JMenuBar();
         jConsMenu1 = new javax.swing.JMenu();
+        jMenuHelp = new javax.swing.JMenuItem();
+        jMenuSeparator4 = new javax.swing.JPopupMenu.Separator();
+        jMenuEsci = new javax.swing.JMenuItem();
         jConsMenuOpz = new javax.swing.JMenu();
-        jConsMenu3 = new javax.swing.JMenu();
+        jMenuSfondo = new javax.swing.JMenu();
+        jCheckSfondoTabellone = new javax.swing.JCheckBoxMenuItem();
+        jCheckSfondoConsole = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Console");
@@ -97,7 +111,7 @@ public class Consolemenu extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(2, 2, 2, 2));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setIconImages(null);
-        setMinimumSize(new java.awt.Dimension(810, 500));
+        setMinimumSize(new java.awt.Dimension(770, 500));
         setName("Console"); // NOI18N
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -107,6 +121,11 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsNomeCasa.setToolTipText("Inserire il nome della squadra");
         jConsNomeCasa.setMaximumSize(new java.awt.Dimension(135, 28));
         jConsNomeCasa.setMinimumSize(new java.awt.Dimension(135, 28));
+        jConsNomeCasa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jConsNomeCasaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jConsNomeCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 230, 30));
 
         jConsTimerLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -114,8 +133,10 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsTimerLabel.setText("TIMER");
         jConsTimerLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jConsTimerLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jConsTimerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 100, -1));
+        jConsTimerLabel.setOpaque(true);
+        getContentPane().add(jConsTimerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 110, -1));
 
+        jConsInizio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Play-1-Normal-Red-icontrasp.png"))); // NOI18N
         jConsInizio.setText("INIZIO");
         jConsInizio.setOpaque(false);
         jConsInizio.addActionListener(new java.awt.event.ActionListener() {
@@ -123,35 +144,37 @@ public class Consolemenu extends javax.swing.JFrame {
                 jConsInizioActionPerformed(evt);
             }
         });
-        getContentPane().add(jConsInizio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
+        getContentPane().add(jConsInizio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 100, 30));
 
+        jConsPausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pausarossatrasp.png"))); // NOI18N
         jConsPausa.setText("PAUSA");
         jConsPausa.setOpaque(false);
-        getContentPane().add(jConsPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, -1, -1));
+        jConsPausa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jConsPausaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jConsPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, 100, 30));
 
-        jConsMin.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        jConsMin.setModel(new javax.swing.SpinnerNumberModel(12, 0, 59, 1));
-        jConsMin.setToolTipText("Impostare la durata della partita (casella secondi)");
-        jConsMin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jConsMin.setMaximumSize(new java.awt.Dimension(40, 42));
+        jConsMin.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        jConsMin.setModel(new javax.swing.SpinnerNumberModel(12, 0, 30, 1));
+        jConsMin.setMaximumSize(new java.awt.Dimension(143, 94));
         jConsMin.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jConsMinStateChanged(evt);
             }
         });
-        getContentPane().add(jConsMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 60, 40));
+        getContentPane().add(jConsMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 70, 50));
 
-        jConsSec.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        jConsSec.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         jConsSec.setModel(new javax.swing.SpinnerNumberModel(0, 0, 60, 1));
-        jConsSec.setToolTipText("Impostare la durata della partita (casella minuti)");
-        jConsSec.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jConsSec.setMaximumSize(new java.awt.Dimension(40, 42));
+        jConsSec.setMaximumSize(new java.awt.Dimension(143, 94));
         jConsSec.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jConsSecStateChanged(evt);
             }
         });
-        getContentPane().add(jConsSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 60, 40));
+        getContentPane().add(jConsSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 70, 50));
 
         jConsLabelVenefix.setFont(new java.awt.Font("Edwardian Script ITC", 0, 24)); // NOI18N
         jConsLabelVenefix.setText("Venefix");
@@ -173,6 +196,8 @@ public class Consolemenu extends javax.swing.JFrame {
         JConsLabelPuntiOsp.setText("PUNTI");
         getContentPane().add(JConsLabelPuntiOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, -1, -1));
 
+        jCons24Start.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCons24Start.setForeground(new java.awt.Color(51, 204, 0));
         jCons24Start.setText("START");
         jCons24Start.setOpaque(false);
         jCons24Start.addActionListener(new java.awt.event.ActionListener() {
@@ -180,8 +205,9 @@ public class Consolemenu extends javax.swing.JFrame {
                 jCons24StartActionPerformed(evt);
             }
         });
-        getContentPane().add(jCons24Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 70, -1));
+        getContentPane().add(jCons24Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 70, -1));
 
+        jCons24Reset.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jCons24Reset.setText("RESET");
         jCons24Reset.setOpaque(false);
         jCons24Reset.addActionListener(new java.awt.event.ActionListener() {
@@ -189,13 +215,19 @@ public class Consolemenu extends javax.swing.JFrame {
                 jCons24ResetActionPerformed(evt);
             }
         });
-        getContentPane().add(jCons24Reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 70, -1));
+        getContentPane().add(jCons24Reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 70, -1));
 
+        jCons24Stop.setForeground(new java.awt.Color(204, 0, 0));
         jCons24Stop.setText("STOP");
         jCons24Stop.setOpaque(false);
-        getContentPane().add(jCons24Stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 70, -1));
+        jCons24Stop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCons24StopActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCons24Stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 70, -1));
 
-        jCons24s.setFont(new java.awt.Font("Roboto", 0, 72)); // NOI18N
+        jCons24s.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
         jCons24s.setModel(new javax.swing.SpinnerNumberModel(24, 0, 24, 1));
         jCons24s.setMaximumSize(new java.awt.Dimension(143, 94));
         jCons24s.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -203,7 +235,7 @@ public class Consolemenu extends javax.swing.JFrame {
                 jCons24sStateChanged(evt);
             }
         });
-        getContentPane().add(jCons24s, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 110, 90));
+        getContentPane().add(jCons24s, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 90, 60));
 
         jConsPuntiCasa.setFont(new java.awt.Font("Tahoma", 0, 72)); // NOI18N
         jConsPuntiCasa.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
@@ -236,6 +268,7 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsFalliCasa.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jConsFalliCasa.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
         jConsFalliCasa.setToolTipText("Falli Casa");
+        jConsFalliCasa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jConsFalliCasa.setMaximumSize(new java.awt.Dimension(63, 64));
         jConsFalliCasa.setOpaque(false);
         jConsFalliCasa.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -248,6 +281,7 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsFalliOsp.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jConsFalliOsp.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
         jConsFalliOsp.setToolTipText("Falli Ospiti");
+        jConsFalliOsp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jConsFalliOsp.setMaximumSize(new java.awt.Dimension(63, 64));
         jConsFalliOsp.setOpaque(false);
         jConsFalliOsp.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -258,6 +292,7 @@ public class Consolemenu extends javax.swing.JFrame {
         getContentPane().add(jConsFalliOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 90, 70));
 
         jConsAzzeraTutto.setText("Azzera");
+        jConsAzzeraTutto.setOpaque(false);
         jConsAzzeraTutto.setPreferredSize(new java.awt.Dimension(79, 23));
         jConsAzzeraTutto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,6 +303,7 @@ public class Consolemenu extends javax.swing.JFrame {
 
         jConsTabView.setText("Tabellone");
         jConsTabView.setToolTipText("Visualizza il Tabellone");
+        jConsTabView.setOpaque(false);
         jConsTabView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jConsTabViewActionPerformed(evt);
@@ -277,12 +313,15 @@ public class Consolemenu extends javax.swing.JFrame {
 
         jConsGiocatoriView.setText("Giocatori");
         jConsGiocatoriView.setEnabled(false);
+        jConsGiocatoriView.setOpaque(false);
         jConsGiocatoriView.setPreferredSize(new java.awt.Dimension(79, 23));
         getContentPane().add(jConsGiocatoriView, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, -1, -1));
 
         jConsFischio.setText("Fischio");
+        jConsFischio.setToolTipText("Fischio");
         jConsFischio.setMaximumSize(new java.awt.Dimension(79, 23));
         jConsFischio.setMinimumSize(new java.awt.Dimension(79, 23));
+        jConsFischio.setOpaque(false);
         jConsFischio.setPreferredSize(new java.awt.Dimension(79, 23));
         jConsFischio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,6 +353,7 @@ public class Consolemenu extends javax.swing.JFrame {
         getContentPane().add(jConsTipoGaraframe, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 80, 60));
 
         jConsWinView.setText("Winner");
+        jConsWinView.setOpaque(false);
         jConsWinView.setPreferredSize(new java.awt.Dimension(79, 23));
         jConsWinView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,6 +364,7 @@ public class Consolemenu extends javax.swing.JFrame {
 
         jConsGironeView.setText("Gironi");
         jConsGironeView.setEnabled(false);
+        jConsGironeView.setOpaque(false);
         jConsGironeView.setPreferredSize(new java.awt.Dimension(79, 23));
         getContentPane().add(jConsGironeView, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, -1, -1));
 
@@ -345,13 +386,17 @@ public class Consolemenu extends javax.swing.JFrame {
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 3));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 6, 500));
 
-        jConsBonusOsp.setBackground(new java.awt.Color(255, 0, 0));
+        jConsBonusOsp.setBackground(new java.awt.Color(255, 255, 255));
+        jConsBonusOsp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jConsBonusOsp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jConsBonusOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 40, 40));
+        jConsBonusOsp.setOpaque(true);
+        getContentPane().add(jConsBonusOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, 30, 70));
 
-        jConsBonusCasa.setBackground(new java.awt.Color(255, 0, 0));
+        jConsBonusCasa.setBackground(new java.awt.Color(255, 255, 255));
+        jConsBonusCasa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jConsBonusCasa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jConsBonusCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 40, 40));
+        jConsBonusCasa.setOpaque(true);
+        getContentPane().add(jConsBonusCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 30, 70));
 
         jConsRedBar1.setBackground(new java.awt.Color(204, 0, 0));
         jConsRedBar1.setForeground(new java.awt.Color(204, 0, 0));
@@ -365,12 +410,13 @@ public class Consolemenu extends javax.swing.JFrame {
 
         jConsPulsanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parq2vert.jpg"))); // NOI18N
         jConsPulsanti.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jConsPulsanti, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 170, 500));
+        getContentPane().add(jConsPulsanti, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 130, 500));
 
         jConsBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banner_trasp.png"))); // NOI18N
         jConsBanner.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jConsBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 590, 110));
+        getContentPane().add(jConsBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 590, 90));
 
+        jConsSfondo.setBackground(new java.awt.Color(102, 102, 102));
         jConsSfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parq.jpg"))); // NOI18N
         jConsSfondo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jConsSfondo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -381,19 +427,62 @@ public class Consolemenu extends javax.swing.JFrame {
         getContentPane().add(jConsSfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
         jConsMenu1.setText("File");
+
+        jMenuHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
+        jMenuHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menuhelp.gif"))); // NOI18N
+        jMenuHelp.setText("Help");
+        jMenuHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuHelpActionPerformed(evt);
+            }
+        });
+        jConsMenu1.add(jMenuHelp);
+        jConsMenu1.add(jMenuSeparator4);
+
+        jMenuEsci.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMenuEsci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menuchiudi.png"))); // NOI18N
+        jMenuEsci.setText("Uscita");
+        jMenuEsci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuEsciActionPerformed(evt);
+            }
+        });
+        jConsMenu1.add(jMenuEsci);
+
         jConsMenuBar.add(jConsMenu1);
 
         jConsMenuOpz.setText("Opzioni");
         jConsMenuOpz.setToolTipText("");
-        jConsMenuBar.add(jConsMenuOpz);
 
-        jConsMenu3.setText("?");
-        jConsMenu3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuSfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menusfondo.png"))); // NOI18N
+        jMenuSfondo.setText("Disabilita Sfondo");
+
+        jCheckSfondoTabellone.setSelected(true);
+        jCheckSfondoTabellone.setText("Tabellone");
+        jCheckSfondoTabellone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jConsMenu3ActionPerformed(evt);
+                jCheckSfondoTabelloneActionPerformed(evt);
             }
         });
-        jConsMenuBar.add(jConsMenu3);
+        jMenuSfondo.add(jCheckSfondoTabellone);
+
+        jCheckSfondoConsole.setSelected(true);
+        jCheckSfondoConsole.setText("Console");
+        jCheckSfondoConsole.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckSfondoConsoleItemStateChanged(evt);
+            }
+        });
+        jCheckSfondoConsole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckSfondoConsoleActionPerformed(evt);
+            }
+        });
+        jMenuSfondo.add(jCheckSfondoConsole);
+
+        jConsMenuOpz.add(jMenuSfondo);
+
+        jConsMenuBar.add(jConsMenuOpz);
 
         setJMenuBar(jConsMenuBar);
 
@@ -401,8 +490,42 @@ public class Consolemenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jConsInizioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsInizioActionPerformed
-        // TODO add your handling code here:
-        
+                                                                                //TEMPO GARA
+        TimerTask Conta = new TimerTask(){                                  
+//        Integer tsec = 60;
+            Integer tsec = (Integer) jConsSec.getValue();
+            Integer tmin = (Integer) jConsMin.getValue();
+            public void run(){
+             
+              jConsInizio.setEnabled(false);
+               tsec --;
+                if ((tmin == -1) && (tsec == -1)){
+                     jConsSec.setValue(59); 
+                     System.out.println("SECONDI IN GIU");
+                     System.out.println(tsec);
+                     tmin --;   
+                }
+                       else if ((tmin >= 0) && (tsec >= 0)){
+    //                      timer.cancel();
+                          tsec --;
+                          System.out.println("SCRITTA OK");
+                          jConsSec.setValue(tsec);
+                          jConsMin.setValue(tmin);
+                        }
+                   
+                //fine partita               
+               if ((tmin == 0) && (tsec == 0));{
+                System.out.println("secondi" + tsec);
+                System.out.println("minuti" + tmin);
+                tmin --;
+                System.out.println("FINE PARTITA");
+//                   gara.cancel();
+               winner.setVisible (true);
+                   }
+            }
+    };
+        gara.scheduleAtFixedRate(Conta, 0, 1000);
+  
     }//GEN-LAST:event_jConsInizioActionPerformed
 
     private void jConsPuntiCasaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsPuntiCasaStateChanged
@@ -430,25 +553,19 @@ public class Consolemenu extends javax.swing.JFrame {
 
  
     private void jConsFischioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsFischioActionPerformed
-        {
          toolkit.getDefaultToolkit().beep();
-        }
     }//GEN-LAST:event_jConsFischioActionPerformed
 
     private void jConsFinaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsFinaleActionPerformed
         jConsMin.setValue(15);
         int finalegirone = 30;
+        //fare in modo che il punteggio per vincere sia 30 invece di 21
     }//GEN-LAST:event_jConsFinaleActionPerformed
-
-    private void jConsMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsMenu3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jConsMenu3ActionPerformed
 
     private void jConsTabViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsTabViewActionPerformed
     tabellone.setVisible(true);
     tabellone.changeNomeSquadraCasa(jConsNomeCasa.getText());
     tabellone.changeNomeSquadraOsp(jConsNomeOsp.getText());
-//    tabellone.startClock();
     }//GEN-LAST:event_jConsTabViewActionPerformed
 
     private void jConsWinViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsWinViewActionPerformed
@@ -481,15 +598,19 @@ public class Consolemenu extends javax.swing.JFrame {
         tabellone.changejTabFalliCasa(valuefc);
        }
         if (valuefc > (4)) 
-         {
+         { 
             jConsBonusCasa.setOpaque(true);
+            jConsBonusCasa.setBackground(Color.red);
             tabellone.jTabFalliCasa.setBackground(Color.red);
          } 
-           else 
-              if (valuefc <(5)) 
+           else {
+              if (valuefc <(4)) 
              jConsBonusCasa.setOpaque(false);
+             jConsBonusCasa.setBackground(Color.white);
              jConsFalliCasa.setBackground(Color.black);
-             tabellone.jTabFalliCasa.setBackground(Color.black);
+             tabellone.jTabFalliCasa.setBackground(Color.black);    
+        }                                           
+
     }//GEN-LAST:event_jConsFalliCasaStateChanged
 
     private void jConsFalliOspStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsFalliOspStateChanged
@@ -500,26 +621,38 @@ public class Consolemenu extends javax.swing.JFrame {
        }
         if (valuefo > (4)) 
         {
-              jConsBonusOsp.setOpaque (true); //cambiare colore dello spinner falli nella console
+              jConsBonusOsp.setOpaque (true);
+              jConsBonusOsp.setBackground(Color.red);
               tabellone.jTabFalliOsp.setBackground(Color.red);
         } 
-            else 
-        {
-             if (valuefo <(5)) 
+            else {
+              if (valuefo <(4)) 
              jConsBonusOsp.setOpaque (false);
+             jConsBonusOsp.setBackground(Color.white);
              jConsFalliOsp.setBackground(Color.white);
              tabellone.jTabFalliOsp.setBackground(Color.white);
         }
     }//GEN-LAST:event_jConsFalliOspStateChanged
 
     private void jConsAzzeraTuttoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsAzzeraTuttoActionPerformed
-//        azzera falli  
+//        azzera crono e 24 s
+        jConsMin.setValue("12");                // NON FUNZIONA
+        jConsSec.setValue("00");
+//////        tabellone.jTabMin.setText("12");
+//////        tabellone.jTabSec.setText("00");
+//        jCons24s.setValue(24);
+//        tabellone.jTab24sec.setText("24");
+//        tabellone.jTabBarra24s.setValue(24);
+//        azzera falli 
+        jCons24Reset.doClick();  // vedi commento 1
         jConsFalliOsp.setBackground(Color.black);
         jConsFalliCasa.setBackground(Color.white);
         tabellone.jTabFalliCasa.setBackground(Color.black);
         tabellone.jTabFalliOsp.setBackground(Color.white);
         jConsFalliOsp.setValue(0);
         jConsFalliCasa.setValue(0);
+        jConsBonusOsp.setOpaque(false);  
+        jConsBonusCasa.setOpaque(false);  
 //        azzera punti e nome squadre
         jConsPuntiOsp.setValue(0);
         jConsPuntiCasa.setValue(0);
@@ -527,37 +660,33 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsNomeCasa.setText("SQUADRA CASA");
         tabellone.changeNomeSquadraOsp("SQUADRA OSPITI");
         tabellone.changeNomeSquadraCasa("SQUADRA CASA");
-//        azzera crono e 24 s
-        jConsMin.setValue("12");
-        jConsSec.setValue("00");
-        tabellone.jTabMin.setText("12");
-        tabellone.jTabSec.setText("00");
-        jCons24s.setValue(24);
-        tabellone.jTab24sec.setText("24");
-        tabellone.jTabBarra24s.setValue(24);
 //        chiusura di winner
         winner.jWinWinner.setText("3 VS 3");
         winner.setVisible(false);
-        
-    
     }//GEN-LAST:event_jConsAzzeraTuttoActionPerformed
 
     private void jCons24StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCons24StartActionPerformed
-//    Integer v24 = (Integer) jCons24s.getValue();    
-//        v24 --;
-//        jCons24s.setValue(v24);
-                    
-//           if (v24 > (0))  //(valuefo > (4))
-//           {
-//             v24 --;
-//             jCons24s.setValue(v24);
-//             tabellone.changejTab24sec(v24);
-//           }        
-//           else
-//                    {
-//                            v24 --;
-//                    }
-//            t24.scheduleAtFixedRate(task, 0, 1000);
+        TimerTask Conta = new TimerTask(){                                      //24 SECONDI
+               public void run(){
+                   jCons24Start.setEnabled(false);
+                   jCons24Start.setForeground(Color.gray);
+                   Integer tempo = (Integer) jCons24s.getValue();
+                   tempo --;
+                   
+                   if (tempo == -1){
+                     jCons24s.setValue(24); 
+//                     System.out.println("NON DEVE APPARIRE");
+                     System.out.println(tempo);
+                     }
+                       else if (tempo >= 0){
+    //                      timer.cancel();
+//                          System.out.println("SCRITTA OK");
+                          jCons24s.setValue(tempo);
+                    }
+                   }
+    };
+        t24s.scheduleAtFixedRate(Conta, 0, 1000);
+
     }//GEN-LAST:event_jCons24StartActionPerformed
 
     private void jCons24ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCons24ResetActionPerformed
@@ -571,14 +700,60 @@ public class Consolemenu extends javax.swing.JFrame {
         tabellone.changejTab24sec(v24);  // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jCons24sStateChanged
 
+    private void jMenuEsciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEsciActionPerformed
+            System.exit(0) ;      
+    }//GEN-LAST:event_jMenuEsciActionPerformed
+
+    private void jMenuHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuHelpActionPerformed
+        new InfoMenu().setVisible(true);
+    }//GEN-LAST:event_jMenuHelpActionPerformed
+
+    private void jCheckSfondoTabelloneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckSfondoTabelloneActionPerformed
+        tabellone.jTabSfondo.setIcon(null);
+    }//GEN-LAST:event_jCheckSfondoTabelloneActionPerformed
+
+    private void jCheckSfondoConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckSfondoConsoleActionPerformed
+        jConsSfondo.setIcon(null);
+        jConsPulsanti.setIcon(null);
+        jConsBanner.setIcon(null);
+    }//GEN-LAST:event_jCheckSfondoConsoleActionPerformed
+
+    private void jCheckSfondoConsoleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckSfondoConsoleItemStateChanged
+        
+//        if (attivo = true){
+//        jConsPulsanti.setIcon(null);
+//        jConsSfondo.setIcon(null);
+//        attivo = false;    //attivare il toggle per attivare/disattivare lo sfondo
+//        }
+//        if (attivo = false);{
+//        jConsSfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parq.jpg")));
+//        jConsPulsanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parq2vert.jpg")));
+//        attivo = true;
+//         }
+    }//GEN-LAST:event_jCheckSfondoConsoleItemStateChanged
+
+    private void jConsNomeCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsNomeCasaActionPerformed
+//        jConsNomeCasa.getText() = tabellone.jTabNomecasa.setText;
+//        tabellone.
+    }//GEN-LAST:event_jConsNomeCasaActionPerformed
+
+    private void jConsPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsPausaActionPerformed
+        gara.purge(); //CERCARE UN WAIT O UN PAUSE
+        jConsInizio.setEnabled(true);
+    }//GEN-LAST:event_jConsPausaActionPerformed
+
+    private void jCons24StopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCons24StopActionPerformed
+        t24s.purge();
+        jCons24Start.setForeground(Color.green);
+        jCons24Start.setEnabled(true);// COME FERMARE IL CONTO ALLA ROVESCIA
+    }//GEN-LAST:event_jCons24StopActionPerformed
+
     private void jConsSecStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsSecStateChanged
-       Integer sec = (Integer) jConsSec.getValue();    
-             tabellone.changejTabSec(sec);      
+        // TODO add your handling code here:
     }//GEN-LAST:event_jConsSecStateChanged
 
     private void jConsMinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsMinStateChanged
-          Integer min = (Integer) jConsMin.getValue();        
-             tabellone.changejTabMin(min);     
+        // TODO add your handling code here:
     }//GEN-LAST:event_jConsMinStateChanged
 
     /**
@@ -626,6 +801,8 @@ public class Consolemenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JConsLabelPuntiCasa;
     private javax.swing.JLabel JConsLabelPuntiOsp;
+    private javax.swing.JCheckBoxMenuItem jCheckSfondoConsole;
+    private javax.swing.JCheckBoxMenuItem jCheckSfondoTabellone;
     private javax.swing.JButton jCons24Reset;
     private javax.swing.JButton jCons24Start;
     private javax.swing.JButton jCons24Stop;
@@ -647,7 +824,6 @@ public class Consolemenu extends javax.swing.JFrame {
     private javax.swing.JLabel jConsLabelVenefix;
     private javax.swing.JLabel jConsMemorial;
     private javax.swing.JMenu jConsMenu1;
-    private javax.swing.JMenu jConsMenu3;
     private javax.swing.JMenuBar jConsMenuBar;
     private javax.swing.JMenu jConsMenuOpz;
     private javax.swing.JSpinner jConsMin;
@@ -664,6 +840,10 @@ public class Consolemenu extends javax.swing.JFrame {
     private javax.swing.JLabel jConsTimerLabel;
     private javax.swing.JPanel jConsTipoGaraframe;
     private javax.swing.JButton jConsWinView;
+    private javax.swing.JMenuItem jMenuEsci;
+    private javax.swing.JMenuItem jMenuHelp;
+    private javax.swing.JPopupMenu.Separator jMenuSeparator4;
+    private javax.swing.JMenu jMenuSfondo;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 

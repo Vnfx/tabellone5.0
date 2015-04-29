@@ -19,6 +19,7 @@ private Consolemenu consolemenu;
     {
         initComponents();
         AWTUtilities.setWindowOpaque(this, false);
+        com.sun.awt.AWTUtilities.setWindowOpacity(this, 0.9f);
         consolemenu = new Consolemenu();
 
     }

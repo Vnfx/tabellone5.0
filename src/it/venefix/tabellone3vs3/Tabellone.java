@@ -12,7 +12,7 @@ import javax.swing.*;
 public class Tabellone extends javax.swing.JFrame 
        
 {      
-//    boolean vaisx = true;
+//   
     public Tabellone()   
   
     {        
@@ -40,33 +40,7 @@ public class Tabellone extends javax.swing.JFrame
     initComponents();
     Dimension dim = getToolkit().getScreenSize();              // centra il form
     this.setLocation(dim.width/2-this.getWidth()/2,dim.height/2-this.getHeight()/2);
-//    
-//    Timer ora = new Timer();
-//    TimerTask taskora = new TimerTask()
-//    {
-//        public void run() // rende la label (con la scritta venefix) scorrevole
-//        {
-//          if (vaisx == true)
-//            {
-//            jTabLabelVenefix.setLocation(jTabLabelVenefix.getLocation().x -2,jTabLabelVenefix.getLocation ().y);
-//            if (jTabLabelVenefix.getLocation().x < 0)
-//                    {
-//                        vaisx = false;
-//                    }
-//            }
-//            else if (vaisx == false)
-//            {
-//             jTabLabelVenefix.setLocation(jTabLabelVenefix.getLocation().x +2,jTabLabelVenefix.getLocation ().y);  
-//                if (jTabLabelVenefix.getLocation().x > 1200)
-//                    {
-//                        vaisx = true;
-//                    }
-//            }
-//
-//        }
-//    };
-//    ora.scheduleAtFixedRate(taskora, 0, 50);
-//        
+
     } 
     
         
@@ -112,12 +86,13 @@ public class Tabellone extends javax.swing.JFrame
         jTabBarra24s.setMaximum(24);
         jTabBarra24s.setToolTipText("");
         jTabBarra24s.setValue(24);
-        jTabBarra24s.setBorderPainted(false);
         jTabBarra24s.setMaximumSize(new java.awt.Dimension(146, 14));
         jTabBarra24s.setMinimumSize(new java.awt.Dimension(146, 14));
         jTabBarra24s.setName("Barra24s"); // NOI18N
         jTabBarra24s.setString("");
         getContentPane().add(jTabBarra24s, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 250, 150, 22));
+
+        jTabSeparator1.setToolTipText("");
         getContentPane().add(jTabSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 520, 10));
 
         jTabBarraTimer.setMaximum(12);
@@ -130,7 +105,7 @@ public class Tabellone extends javax.swing.JFrame
         jTabNomeCasa.setForeground(new java.awt.Color(255, 255, 255));
         jTabNomeCasa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabNomeCasa.setText("SQUADRA CASA");
-        jTabNomeCasa.setToolTipText("Nome squadra Casa");
+        jTabNomeCasa.setToolTipText("");
         jTabNomeCasa.setOpaque(true);
         getContentPane().add(jTabNomeCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 440, 60));
 
@@ -138,7 +113,7 @@ public class Tabellone extends javax.swing.JFrame
         jTabNomeOsp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jTabNomeOsp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabNomeOsp.setText("SQUADRA OSPITI");
-        jTabNomeOsp.setToolTipText("Nome squadra ospiti");
+        jTabNomeOsp.setToolTipText("");
         jTabNomeOsp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTabNomeOsp.setMaximumSize(new java.awt.Dimension(256, 44));
         jTabNomeOsp.setMinimumSize(new java.awt.Dimension(256, 44));
@@ -150,7 +125,7 @@ public class Tabellone extends javax.swing.JFrame
         jTabPuntiOsp.setFont(new java.awt.Font("Roboto", 0, 240)); // NOI18N
         jTabPuntiOsp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabPuntiOsp.setText("00");
-        jTabPuntiOsp.setToolTipText("Punti Ospiti");
+        jTabPuntiOsp.setToolTipText("");
         jTabPuntiOsp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTabPuntiOsp.setMaximumSize(new java.awt.Dimension(266, 295));
         jTabPuntiOsp.setMinimumSize(new java.awt.Dimension(266, 295));
@@ -163,7 +138,7 @@ public class Tabellone extends javax.swing.JFrame
         jTabPuntiCasa.setForeground(new java.awt.Color(255, 255, 255));
         jTabPuntiCasa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabPuntiCasa.setText("00");
-        jTabPuntiCasa.setToolTipText("Punti Casa");
+        jTabPuntiCasa.setToolTipText("");
         jTabPuntiCasa.setMaximumSize(new java.awt.Dimension(266, 295));
         jTabPuntiCasa.setMinimumSize(new java.awt.Dimension(266, 295));
         jTabPuntiCasa.setOpaque(true);
@@ -182,7 +157,7 @@ public class Tabellone extends javax.swing.JFrame
         jTabMin.setForeground(new java.awt.Color(0, 204, 51));
         jTabMin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabMin.setText("12");
-        jTabMin.setToolTipText("Minuti");
+        jTabMin.setToolTipText("");
         jTabMin.setMaximumSize(new java.awt.Dimension(218, 243));
         jTabMin.setMinimumSize(new java.awt.Dimension(218, 243));
         jTabMin.setOpaque(true);
@@ -199,7 +174,7 @@ public class Tabellone extends javax.swing.JFrame
         jTabSec.setForeground(new java.awt.Color(0, 204, 51));
         jTabSec.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabSec.setText("00");
-        jTabSec.setToolTipText("Secondi");
+        jTabSec.setToolTipText("");
         jTabSec.setOpaque(true);
         getContentPane().add(jTabSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 400, 250, 270));
 
@@ -208,7 +183,7 @@ public class Tabellone extends javax.swing.JFrame
         jTab2pBlink.setForeground(new java.awt.Color(0, 204, 51));
         jTab2pBlink.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTab2pBlink.setText(":");
-        jTab2pBlink.setToolTipText("Puntini Lampeggianti Tempo");
+        jTab2pBlink.setToolTipText("");
         jTab2pBlink.setOpaque(true);
         getContentPane().add(jTab2pBlink, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 400, -1, 270));
 
@@ -217,7 +192,7 @@ public class Tabellone extends javax.swing.JFrame
         jTabFalliCasa.setForeground(new java.awt.Color(255, 255, 255));
         jTabFalliCasa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabFalliCasa.setText("0");
-        jTabFalliCasa.setToolTipText("Falli Casa");
+        jTabFalliCasa.setToolTipText("");
         jTabFalliCasa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTabFalliCasa.setMaximumSize(new java.awt.Dimension(38, 85));
         jTabFalliCasa.setMinimumSize(new java.awt.Dimension(38, 85));
@@ -229,7 +204,7 @@ public class Tabellone extends javax.swing.JFrame
         jTabFalliOsp.setFont(new java.awt.Font("Roboto", 0, 90)); // NOI18N
         jTabFalliOsp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabFalliOsp.setText("0");
-        jTabFalliOsp.setToolTipText("Falli Ospiti");
+        jTabFalliOsp.setToolTipText("");
         jTabFalliOsp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTabFalliOsp.setMaximumSize(new java.awt.Dimension(38, 85));
         jTabFalliOsp.setMinimumSize(new java.awt.Dimension(38, 85));
@@ -238,11 +213,11 @@ public class Tabellone extends javax.swing.JFrame
         getContentPane().add(jTabFalliOsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 480, 120, 110));
 
         jTab24sec.setBackground(new java.awt.Color(0, 0, 0));
-        jTab24sec.setFont(new java.awt.Font("Roboto Th", 1, 100)); // NOI18N
+        jTab24sec.setFont(new java.awt.Font("Roboto Lt", 1, 100)); // NOI18N
         jTab24sec.setForeground(new java.awt.Color(0, 204, 51));
         jTab24sec.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTab24sec.setText("24");
-        jTab24sec.setToolTipText("24 Sec");
+        jTab24sec.setToolTipText("");
         jTab24sec.setOpaque(true);
         jTab24sec.setPreferredSize(new java.awt.Dimension(150, 138));
         jTab24sec.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -255,14 +230,17 @@ public class Tabellone extends javax.swing.JFrame
         jTabTitoloMemorial.setFont(new java.awt.Font("Edwardian Script ITC", 1, 36)); // NOI18N
         jTabTitoloMemorial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTabTitoloMemorial.setText("Memorial Alberto Ceccherini");
+        jTabTitoloMemorial.setToolTipText("");
         jTabTitoloMemorial.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(jTabTitoloMemorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 430, 50));
 
         jTabLabelVenefix.setFont(new java.awt.Font("Edwardian Script ITC", 0, 24)); // NOI18N
         jTabLabelVenefix.setText("Venefix");
+        jTabLabelVenefix.setToolTipText("");
         getContentPane().add(jTabLabelVenefix, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 720, 60, 30));
 
         jTabSfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tolomei.jpg"))); // NOI18N
+        jTabSfondo.setToolTipText("");
         jTabSfondo.setMaximumSize(new java.awt.Dimension(1280, 768));
         jTabSfondo.setMinimumSize(new java.awt.Dimension(1280, 768));
         jTabSfondo.setPreferredSize(new java.awt.Dimension(1280, 768));
@@ -274,7 +252,19 @@ public class Tabellone extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTab24secPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTab24secPropertyChange
-        // TODO add your handling code here:
+       int setcol = Integer.parseInt(jTab24sec.getText());
+      if (setcol <= 5) {
+          jTab24sec.setForeground(new Color(204,0,0)); //rosso
+          jTab24sec.setBackground(Color.black);
+          }
+          else {
+          jTab24sec.setForeground(new Color(0,204,51));//verde
+          jTab24sec.setBackground(Color.black);
+          }
+//      if (setcol == 0){     //DA ERRORE A 0
+//          jTab24sec.setForeground(Color.black);
+//          jTab24sec.setBackground(Color.red);//.setBackground(new Color(204,0,0)); //rosso
+//        }   
     }//GEN-LAST:event_jTab24secPropertyChange
 
     private void jTabMinPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTabMinPropertyChange
@@ -334,7 +324,7 @@ public class Tabellone extends javax.swing.JFrame
     public javax.swing.JProgressBar jTabBarraTimer;
     public javax.swing.JLabel jTabFalliCasa;
     public javax.swing.JLabel jTabFalliOsp;
-    private javax.swing.JLabel jTabLabelVenefix;
+    public javax.swing.JLabel jTabLabelVenefix;
     public javax.swing.JLabel jTabMin;
     private javax.swing.JLabel jTabNomeCasa;
     private javax.swing.JLabel jTabNomeOsp;
@@ -343,7 +333,7 @@ public class Tabellone extends javax.swing.JFrame
     private javax.swing.JLabel jTabPuntiOsp;
     public javax.swing.JLabel jTabSec;
     private javax.swing.JSeparator jTabSeparator1;
-    private javax.swing.JLabel jTabSfondo;
+    public javax.swing.JLabel jTabSfondo;
     private javax.swing.JLabel jTabTitoloMemorial;
     // End of variables declaration//GEN-END:variables
  
@@ -357,13 +347,19 @@ public class Tabellone extends javax.swing.JFrame
     }
     public void changejTab24sec(Integer v24) 
     {
-// vb24 = valore barra 24 secondi
+//       vb24 = valore barra 24 secondi
         int vb24 = Integer.parseInt(jTab24sec.getText());
         jTabBarra24s.setValue(vb24);
         jTab24sec.setText(v24.toString());
+//        if (vb24 == 10){           ISTRUZIONI PER FARE LA BARRA DI COLORE ROSSO
 //        jTabBarra24s.setStringPainted(true);
-       
-      
+//        jTabBarra24s.setForeground(Color.red);
+//        jTabBarra24s.setBackground(Color.red);
+//        System.out.println(vb24);
+//       }
+//        else
+//        jTabBarra24s.setStringPainted(false);
+//      
     }
     public void changeNomeSquadraCasa(String name) 
     {
@@ -389,14 +385,14 @@ public class Tabellone extends javax.swing.JFrame
     {
         jTabFalliOsp.setText(valuefo.toString());
     }
-//    public void changeJTabNomeCasa(String value) 
-//    {
+    public void changeJTabNomeCasa(String value) 
+    {
 //        jTabNomeCasa.setText(value.toString());
-//    }
-//    public void changeJTabNomeOsp(String value) 
-//    {
+    }
+    public void changeJTabNomeOsp(String value) 
+    {
 //        jTabNomeOsp.setText(Consolemenu.jConsNomeOsp.getText());
-//    }
+    }
 
    
 }
