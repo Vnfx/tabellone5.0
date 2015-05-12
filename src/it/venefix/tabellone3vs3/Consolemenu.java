@@ -1,21 +1,19 @@
 package it.venefix.tabellone3vs3;
 
 import java.awt.*;
-//import java.awt.event.ActionListener;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 //import sun.audio.*;
 
 
 public class Consolemenu extends javax.swing.JFrame {
     Toolkit toolkit;
-//    Timer timer;
     private Tabellone tabellone;
     private Winner winner;
 
-    Timer t24s = new Timer();
-    Timer gara = new Timer();
-    Timer vsxa = new Timer();
+  
+//    Timer vsxa = new Timer();
    
     public Consolemenu() {
         initComponents();
@@ -23,8 +21,10 @@ public class Consolemenu extends javax.swing.JFrame {
 //        boolean attivo = true;
         tabellone = new Tabellone();
         winner = new Winner();
-       
-        Dimension dim = getToolkit().getScreenSize(); // centra lo schermo
+        int finalegirone = 21;
+        
+        // centra lo schermo
+        Dimension dim = getToolkit().getScreenSize(); 
         this.setLocation(dim.width/2-this.getWidth()/2,dim.height/2-this.getHeight()/2);
      
 //    TimerTask scritta = new TimerTask()
@@ -57,6 +57,7 @@ public class Consolemenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup = new javax.swing.ButtonGroup();
         jConsNomeCasa = new javax.swing.JTextField();
         jConsTimerLabel = new javax.swing.JLabel();
         jConsInizio = new javax.swing.JButton();
@@ -83,6 +84,7 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsTipoGaraframe = new javax.swing.JPanel();
         jConsGirone = new javax.swing.JRadioButton();
         jConsFinale = new javax.swing.JRadioButton();
+        jConsGara3 = new javax.swing.JRadioButton();
         jConsWinView = new javax.swing.JButton();
         jConsGironeView = new javax.swing.JButton();
         jConsNomeOsp = new javax.swing.JTextField();
@@ -134,7 +136,7 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsTimerLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jConsTimerLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jConsTimerLabel.setOpaque(true);
-        getContentPane().add(jConsTimerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 110, -1));
+        getContentPane().add(jConsTimerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 120, -1));
 
         jConsInizio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Play-1-Normal-Red-icontrasp.png"))); // NOI18N
         jConsInizio.setText("INIZIO");
@@ -167,7 +169,7 @@ public class Consolemenu extends javax.swing.JFrame {
         getContentPane().add(jConsMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 70, 50));
 
         jConsSec.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
-        jConsSec.setModel(new javax.swing.SpinnerNumberModel(0, 0, 60, 1));
+        jConsSec.setModel(new javax.swing.SpinnerNumberModel(0, -1, 59, 1));
         jConsSec.setMaximumSize(new java.awt.Dimension(143, 94));
         jConsSec.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -238,7 +240,7 @@ public class Consolemenu extends javax.swing.JFrame {
         getContentPane().add(jCons24s, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 90, 60));
 
         jConsPuntiCasa.setFont(new java.awt.Font("Tahoma", 0, 72)); // NOI18N
-        jConsPuntiCasa.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+        jConsPuntiCasa.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
         jConsPuntiCasa.setToolTipText("Contatore Punti Casa");
         jConsPuntiCasa.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jConsPuntiCasa.setMaximumSize(new java.awt.Dimension(45, 93));
@@ -253,7 +255,7 @@ public class Consolemenu extends javax.swing.JFrame {
         getContentPane().add(jConsPuntiCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 110, 90));
 
         jConsPuntiOsp.setFont(new java.awt.Font("Tahoma", 0, 72)); // NOI18N
-        jConsPuntiOsp.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+        jConsPuntiOsp.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
         jConsPuntiOsp.setToolTipText("Contatore Punti Ospiti");
         jConsPuntiOsp.setMaximumSize(new java.awt.Dimension(45, 93));
         jConsPuntiOsp.setMinimumSize(new java.awt.Dimension(45, 93));
@@ -294,9 +296,9 @@ public class Consolemenu extends javax.swing.JFrame {
         jConsAzzeraTutto.setText("Azzera");
         jConsAzzeraTutto.setOpaque(false);
         jConsAzzeraTutto.setPreferredSize(new java.awt.Dimension(79, 23));
-        jConsAzzeraTutto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jConsAzzeraTuttoActionPerformed(evt);
+        jConsAzzeraTutto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jConsAzzeraTuttoMouseClicked(evt);
             }
         });
         getContentPane().add(jConsAzzeraTutto, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
@@ -332,25 +334,47 @@ public class Consolemenu extends javax.swing.JFrame {
 
         jConsTipoGaraframe.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jConsTipoGaraframe.setToolTipText("Modalità Torneo");
+        jConsTipoGaraframe.setOpaque(false);
         jConsTipoGaraframe.setLayout(null);
 
+        buttonGroup.add(jConsGirone);
         jConsGirone.setSelected(true);
         jConsGirone.setText("Girone");
         jConsGirone.setToolTipText("Girone Regolare");
+        jConsGirone.setOpaque(false);
+        jConsGirone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jConsGironeActionPerformed(evt);
+            }
+        });
         jConsTipoGaraframe.add(jConsGirone);
         jConsGirone.setBounds(10, 10, 60, 20);
 
+        buttonGroup.add(jConsFinale);
         jConsFinale.setText("Finale");
         jConsFinale.setToolTipText("Finali e Semifinali");
+        jConsFinale.setOpaque(false);
         jConsFinale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jConsFinaleActionPerformed(evt);
             }
         });
         jConsTipoGaraframe.add(jConsFinale);
-        jConsFinale.setBounds(10, 30, 53, 23);
+        jConsFinale.setBounds(10, 50, 60, 20);
 
-        getContentPane().add(jConsTipoGaraframe, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 80, 60));
+        buttonGroup.add(jConsGara3);
+        jConsGara3.setText("3 Punti");
+        jConsGara3.setToolTipText("Finali e Semifinali");
+        jConsGara3.setOpaque(false);
+        jConsGara3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jConsGara3ActionPerformed(evt);
+            }
+        });
+        jConsTipoGaraframe.add(jConsGara3);
+        jConsGara3.setBounds(10, 30, 60, 20);
+
+        getContentPane().add(jConsTipoGaraframe, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 80, 80));
 
         jConsWinView.setText("Winner");
         jConsWinView.setOpaque(false);
@@ -488,60 +512,48 @@ public class Consolemenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private Timer t24s ;
+    private Timer gara ;
+    
     private void jConsInizioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsInizioActionPerformed
-                                                                                //TEMPO GARA
-        TimerTask Conta = new TimerTask(){                                  
-//        Integer tsec = 60;
-            Integer tsec = (Integer) jConsSec.getValue();
-            Integer tmin = (Integer) jConsMin.getValue();
-            public void run(){
-             
-              jConsInizio.setEnabled(false);
-               tsec --;
-                if ((tmin == -1) && (tsec == -1)){
-                     jConsSec.setValue(59); 
-                     System.out.println("SECONDI IN GIU");
-                     System.out.println(tsec);
-                     tmin --;   
-                }
-                       else if ((tmin >= 0) && (tsec >= 0)){
-    //                      timer.cancel();
-                          tsec --;
-                          System.out.println("SCRITTA OK");
-                          jConsSec.setValue(tsec);
-                          jConsMin.setValue(tmin);
-                        }
-                   
-                //fine partita               
-               if ((tmin == 0) && (tsec == 0));{
-                System.out.println("secondi" + tsec);
-                System.out.println("minuti" + tmin);
-                tmin --;
-                System.out.println("FINE PARTITA");
-//                   gara.cancel();
-               winner.setVisible (true);
-                   }
-            }
-    };
-        gara.scheduleAtFixedRate(Conta, 0, 1000);
-  
+        if (jConsGara3.isSelected() == false) {
+            gara = new Timer(1000, new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    Integer garasec = (Integer) jConsSec.getValue();
+                    garasec--;
+                    jConsSec.setValue(garasec);
+                }    
+            });
+            gara.start();                                                                    
+            jCons24Start.doClick();
+        }
+        else {
+            gara = new Timer(1000, new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    Integer garasec = (Integer) jConsSec.getValue();
+                    garasec--;
+                    jConsSec.setValue(garasec);
+                }    
+            });
+            gara.start();
+        }
     }//GEN-LAST:event_jConsInizioActionPerformed
-
     private void jConsPuntiCasaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsPuntiCasaStateChanged
+        int finalegirone;
         Integer valuepc = (Integer) jConsPuntiCasa.getValue();
         String wincasa = (String) jConsNomeCasa.getText();
-        if (jConsFinale.isEnabled() != true ){
-            int finalegirone = 30;
+        if (jConsFinale.isSelected()== true ){
+             finalegirone = 30;
+             
         }
         else{
-            int finalegirone = 21;
+             finalegirone = 21;
         }
             
         if (tabellone != null ) {
             tabellone.changeJTabPuntiCasa(valuepc);
 
-            if (valuepc == 21) {
+            if (valuepc == finalegirone) {
               winner.setVisible(true); 
               toolkit.getDefaultToolkit().beep();
               winner.changeJWinWinner(wincasa);
@@ -558,14 +570,33 @@ public class Consolemenu extends javax.swing.JFrame {
 
     private void jConsFinaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsFinaleActionPerformed
         jConsMin.setValue(15);
+        jConsSec.setValue(00);
+        jConsPuntiCasa.setMaximumSize(null);
+        jConsPuntiOsp.setMaximumSize(null);
         int finalegirone = 30;
-        //fare in modo che il punteggio per vincere sia 30 invece di 21
+        jCons24s.setVisible(true);
+        jCons24Start.setVisible(true);
+        jCons24Reset.setVisible(true);
+        jCons24Stop.setVisible(true);
+        
+        jConsFalliCasa.setVisible(true);
+        jConsBonusCasa.setVisible(true);   
+        jConsFalliOsp.setVisible(true);
+        jConsBonusOsp.setVisible(true); 
+        
+        jConsLabelFalliOsp.setVisible(true);
+        jConsLabelFalliCasa.setVisible(true);
+        
+        tabellone.jTabFalliCasa.setVisible(true);
+        tabellone.jTab24s.setVisible(true);   
+        tabellone.jTabFalliOsp.setVisible(true);
+        tabellone.jTabBarra24s.setVisible(true);
     }//GEN-LAST:event_jConsFinaleActionPerformed
 
     private void jConsTabViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsTabViewActionPerformed
     tabellone.setVisible(true);
-    tabellone.changeNomeSquadraCasa(jConsNomeCasa.getText());
-    tabellone.changeNomeSquadraOsp(jConsNomeOsp.getText());
+    tabellone.changeNomeCasa(jConsNomeCasa.getText());
+    tabellone.changeNomeOsp(jConsNomeOsp.getText());
     }//GEN-LAST:event_jConsTabViewActionPerformed
 
     private void jConsWinViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsWinViewActionPerformed
@@ -573,22 +604,40 @@ public class Consolemenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jConsWinViewActionPerformed
 
     private void jConsPuntiOspStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsPuntiOspStateChanged
+        int finalegirone;
         Integer valuepo = (Integer) jConsPuntiOsp.getValue();
-        String winosp = (String) jConsNomeOsp.getText();
-        if (tabellone != null ) 
-       {
-        tabellone.changeJTabPuntiOsp(valuepo);
-       }
-        if (valuepo.equals(21)) 
-        {
-            winner.setVisible(true);
-            toolkit.getDefaultToolkit().beep();
-            winner.changeJWinWinner(winosp);
-            winner.changeJWinWinner1(winosp);
-        } else 
-        {
-           
+        String wincasa = (String) jConsNomeOsp.getText();
+        if (jConsFinale.isSelected()== true ){
+             finalegirone = 30;
         }
+        else{
+             finalegirone = 21;
+        }
+        if (tabellone != null ) {
+            tabellone.changeJTabPuntiOsp(valuepo);
+            if (valuepo == finalegirone) {
+              winner.setVisible(true); 
+              toolkit.getDefaultToolkit().beep();
+              winner.changeJWinWinner(wincasa);
+              winner.changeJWinWinner1(wincasa);
+            }
+        }   
+//        Integer valuepo = (Integer) jConsPuntiOsp.getValue();
+//        String winosp = (String) jConsNomeOsp.getText();
+//        if (tabellone != null ) 
+//       {
+//        tabellone.changeJTabPuntiOsp(valuepo);
+//       }
+//        if (valuepo.equals(21)) 
+//        {
+//            winner.setVisible(true);
+//            toolkit.getDefaultToolkit().beep();
+//            winner.changeJWinWinner(winosp);
+//            winner.changeJWinWinner1(winosp);
+//        } else 
+//        {
+//           
+//        }
     }//GEN-LAST:event_jConsPuntiOspStateChanged
 
     private void jConsFalliCasaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsFalliCasaStateChanged
@@ -634,70 +683,41 @@ public class Consolemenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jConsFalliOspStateChanged
 
-    private void jConsAzzeraTuttoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsAzzeraTuttoActionPerformed
-//        azzera crono e 24 s
-        jConsMin.setValue("12");                // NON FUNZIONA
-        jConsSec.setValue("00");
-//////        tabellone.jTabMin.setText("12");
-//////        tabellone.jTabSec.setText("00");
-//        jCons24s.setValue(24);
-//        tabellone.jTab24sec.setText("24");
-//        tabellone.jTabBarra24s.setValue(24);
-//        azzera falli 
-        jCons24Reset.doClick();  // vedi commento 1
-        jConsFalliOsp.setBackground(Color.black);
-        jConsFalliCasa.setBackground(Color.white);
-        tabellone.jTabFalliCasa.setBackground(Color.black);
-        tabellone.jTabFalliOsp.setBackground(Color.white);
-        jConsFalliOsp.setValue(0);
-        jConsFalliCasa.setValue(0);
-        jConsBonusOsp.setOpaque(false);  
-        jConsBonusCasa.setOpaque(false);  
-//        azzera punti e nome squadre
-        jConsPuntiOsp.setValue(0);
-        jConsPuntiCasa.setValue(0);
-        jConsNomeOsp.setText("SQUADRA OSPITI");
-        jConsNomeCasa.setText("SQUADRA CASA");
-        tabellone.changeNomeSquadraOsp("SQUADRA OSPITI");
-        tabellone.changeNomeSquadraCasa("SQUADRA CASA");
-//        chiusura di winner
-        winner.jWinWinner.setText("3 VS 3");
-        winner.setVisible(false);
-    }//GEN-LAST:event_jConsAzzeraTuttoActionPerformed
-
     private void jCons24StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCons24StartActionPerformed
-        TimerTask Conta = new TimerTask(){                                      //24 SECONDI
-               public void run(){
-                   jCons24Start.setEnabled(false);
-                   jCons24Start.setForeground(Color.gray);
-                   Integer tempo = (Integer) jCons24s.getValue();
-                   tempo --;
-                   
-                   if (tempo == -1){
-                     jCons24s.setValue(24); 
-//                     System.out.println("NON DEVE APPARIRE");
-                     System.out.println(tempo);
-                     }
-                       else if (tempo >= 0){
-    //                      timer.cancel();
-//                          System.out.println("SCRITTA OK");
-                          jCons24s.setValue(tempo);
-                    }
-                   }
-    };
-        t24s.scheduleAtFixedRate(Conta, 0, 1000);
+        t24s = new Timer(1000, new ActionListener() {
+         public void actionPerformed(ActionEvent evt) {                                    //24 SECONDI
+                       jCons24Start.setEnabled(false);
+                       jCons24Start.setForeground(Color.gray);
+                       Integer tempo = (Integer) jCons24s.getValue();
+                       tempo --;
+                       System.out.println("tempo"+tempo);
+                       jCons24s.setValue(tempo);
+                           if (tempo == -1){
+                                jCons24s.setValue(24); 
+                              
+                            }
+                               else if (tempo == 0){
+                                  t24s.stop();
+                                  gara.stop();
+                                  jCons24Start.setEnabled(true);
+                                }
+         }
+        });
+        t24s.start(); 
 
     }//GEN-LAST:event_jCons24StartActionPerformed
 
     private void jCons24ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCons24ResetActionPerformed
        jCons24s.setValue(24);
-       tabellone.jTab24sec.setText("24");
+       jCons24Start.setEnabled(true);
+       jCons24Start.setForeground(Color.green);
+       tabellone.jTab24s.setText("24");
        tabellone.jTabBarra24s.setValue(24);
     }//GEN-LAST:event_jCons24ResetActionPerformed
 
     private void jCons24sStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCons24sStateChanged
         Integer v24 = (Integer) jCons24s.getValue();  
-        tabellone.changejTab24sec(v24);  // TODO add your handling code here:        // TODO add your handling code here:
+        tabellone.changejTab24s(v24);
     }//GEN-LAST:event_jCons24sStateChanged
 
     private void jMenuEsciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEsciActionPerformed
@@ -733,28 +753,123 @@ public class Consolemenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckSfondoConsoleItemStateChanged
 
     private void jConsNomeCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsNomeCasaActionPerformed
-//        jConsNomeCasa.getText() = tabellone.jTabNomecasa.setText;
-//        tabellone.
     }//GEN-LAST:event_jConsNomeCasaActionPerformed
 
     private void jConsPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsPausaActionPerformed
-        gara.purge(); //CERCARE UN WAIT O UN PAUSE
+        gara.stop(); 
         jConsInizio.setEnabled(true);
+        jCons24Stop.doClick();
     }//GEN-LAST:event_jConsPausaActionPerformed
 
     private void jCons24StopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCons24StopActionPerformed
-        t24s.purge();
+        t24s.stop();
         jCons24Start.setForeground(Color.green);
-        jCons24Start.setEnabled(true);// COME FERMARE IL CONTO ALLA ROVESCIA
+        jCons24Start.setEnabled(true);
     }//GEN-LAST:event_jCons24StopActionPerformed
 
     private void jConsSecStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsSecStateChanged
-        // TODO add your handling code here:
+          Integer seccon = (Integer) jConsSec.getValue();  
+          Integer mincon = (Integer) jConsMin.getValue(); 
+          tabellone.changejTabSec(seccon); 
+          tabellone.changejTabMin(mincon); 
+            if (seccon == -1){
+              jConsSec.setValue(59);   
+              mincon --;
+              jConsMin.setValue(mincon);
+            }
+            if ((seccon == 0) && (mincon == 0)){
+                gara.stop();
+                t24s.stop();
+                winner.setVisible(true);
+                jConsMin.setValue(12);
+                jConsMin.setValue(0);
+            }
+            
     }//GEN-LAST:event_jConsSecStateChanged
 
     private void jConsMinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jConsMinStateChanged
-        // TODO add your handling code here:
+          Integer secmin = (Integer) jConsMin.getValue();  
+          tabellone.changejTabMin(secmin);  
     }//GEN-LAST:event_jConsMinStateChanged
+
+    private void jConsGara3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsGara3ActionPerformed
+       jConsMin.setValue(2);
+       jConsSec.setValue(30);
+       
+       jCons24s.setVisible(false);
+       jCons24Start.setVisible(false);
+       jCons24Reset.setVisible(false);
+       jCons24Stop.setVisible(false);
+       
+       jConsFalliCasa.setVisible(false);
+       jConsBonusCasa.setVisible(false);   
+       jConsFalliOsp.setVisible(false);
+       jConsBonusOsp.setVisible(false); 
+       
+       jConsLabelFalliOsp.setVisible(false);
+       jConsLabelFalliCasa.setVisible(false);
+       
+       tabellone.jTabFalliCasa.setVisible(false);
+       tabellone.jTab24s.setVisible(false);   
+       tabellone.jTabFalliOsp.setVisible(false);
+       tabellone.jTabBarra24s.setVisible(false);
+      
+       
+    }//GEN-LAST:event_jConsGara3ActionPerformed
+
+    private void jConsGironeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsGironeActionPerformed
+        jConsMin.setValue(12);
+        jConsSec.setValue(00);
+//        int finalegirone = 21;
+        jCons24s.setVisible(true);
+        jCons24Start.setVisible(true);
+        jCons24Reset.setVisible(true);
+        jCons24Stop.setVisible(true);
+        
+        jConsFalliCasa.setVisible(true);
+        jConsBonusCasa.setVisible(true);   
+        jConsFalliOsp.setVisible(true);
+        jConsBonusOsp.setVisible(true); 
+          
+        jConsLabelFalliOsp.setVisible(true);
+        jConsLabelFalliCasa.setVisible(true);
+        
+        tabellone.jTabFalliCasa.setVisible(true);
+        tabellone.jTab24s.setVisible(true);   
+        tabellone.jTabFalliOsp.setVisible(true);
+        tabellone.jTabBarra24s.setVisible(true);
+    }//GEN-LAST:event_jConsGironeActionPerformed
+
+    private void jConsAzzeraTuttoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jConsAzzeraTuttoMouseClicked
+//        azzera crono e 24 s
+        jConsMin.setValue(12);                // NON FUNZIONA
+        jConsSec.setValue(00);
+        tabellone.jTabMin.setText("12");
+        tabellone.jTabSec.setText("00");
+        jCons24s.setValue(24);
+        tabellone.jTab24s.setText("24");
+        tabellone.jTabBarra24s.setValue(24);
+//        azzera falli 
+        jCons24Reset.doClick();  // vedi commento 1
+        jConsFalliOsp.setBackground(Color.black);
+        jConsFalliCasa.setBackground(Color.white);
+        tabellone.jTabFalliCasa.setBackground(Color.black);
+        tabellone.jTabFalliOsp.setBackground(Color.white);
+        jConsFalliOsp.setValue(0);
+        jConsFalliCasa.setValue(0);
+        jConsBonusOsp.setOpaque(false);  
+        jConsBonusCasa.setOpaque(false);  
+//        azzera punti e nome squadre
+        jConsPuntiOsp.setValue(0);
+        jConsPuntiCasa.setValue(0);
+        jConsNomeOsp.setText("SQUADRA OSPITI");
+        jConsNomeCasa.setText("SQUADRA CASA");
+        tabellone.changeNomeOsp("SQUADRA OSPITI");
+        tabellone.changeNomeCasa("SQUADRA CASA");
+//        chiusura di winner
+        winner.jWinWinner.setText("3 VS 3");
+        winner.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jConsAzzeraTuttoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -801,6 +916,7 @@ public class Consolemenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JConsLabelPuntiCasa;
     private javax.swing.JLabel JConsLabelPuntiOsp;
+    private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JCheckBoxMenuItem jCheckSfondoConsole;
     private javax.swing.JCheckBoxMenuItem jCheckSfondoTabellone;
     private javax.swing.JButton jCons24Reset;
@@ -815,6 +931,7 @@ public class Consolemenu extends javax.swing.JFrame {
     private javax.swing.JSpinner jConsFalliOsp;
     private javax.swing.JRadioButton jConsFinale;
     private javax.swing.JButton jConsFischio;
+    private javax.swing.JRadioButton jConsGara3;
     private javax.swing.JButton jConsGiocatoriView;
     private javax.swing.JRadioButton jConsGirone;
     private javax.swing.JButton jConsGironeView;
@@ -847,8 +964,8 @@ public class Consolemenu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    private Object Tabellone() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    private Object Tabellone() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 }
 ;
